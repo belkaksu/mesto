@@ -10,53 +10,53 @@
     background-color: #000;
     box-sizing: border-box;
   }
-  
+
   .header {
     max-width: 1280px;
   }
-  
+
   .page__header {
     margin: 0 auto;
   }
-  
+
   .logo {
     width: 104px;
     height: 24px;
   }
-  
+
   .header__logo {
     margin: 28px 0 32px 27px;
   }
-  
+
   .header__line {
     border-bottom: 1px solid #545454;
     opacity: 0.7;
   }
-  
+
   .content {
     max-width: 1280px;
     color: white;
   }
-  
+
   .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .content__profile {
     width: 88%;
     margin: 42px auto 36px;
-    
+
   }
-  
+
   .profile__avatar {
     width: 120px;
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
   }
-  
+
   .profile__info {
     width: 100%;
     margin: 26px auto 0;
@@ -64,7 +64,7 @@
     flex-direction: column;
     position: relative;
   }
-  
+
   .profile__title {
     width: 67%;
     margin: 0 auto;
@@ -73,7 +73,7 @@
     line-height: 1.22;
     text-align: center;
   }
-  
+
   .profile__edit-button {
     padding: 0;
     background-color: #000;
@@ -84,18 +84,18 @@
     top: 8px;
     right: 19px;
   }
-  
+
   .profile__button-image {
     object-fit: cover;
   }
-  
+
   .profile__subtitle {
     font-size: 14px;
     line-height: 1.21;
     text-align: center;
     margin: 14px auto 36px;
   }
-  
+
   .profile__add-button {
     padding: 0;
     background-color: black;
@@ -105,9 +105,72 @@
     width: 282px;
     height: 50px;
   }
-  
-  
+
+  .cards {
+
+  }
+
+  .elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+
+    list-style: none;
+    padding: 0;
+  }
+
+  .element {
+
+    width: 282px;
+    height: 361px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+
+  }
+
+  .element:last-child {
+    margin-bottom: 0px;
+  }
+
+  .element__card {
+    margin: 0;
+
+  }
+
+  .element__image {
+    margin: 0;
+    width: 282px;
+    height: 282px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .element__desc {
+    max-width: 190px;
+    color: black;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 900;
+    padding: 25px 0 0 21px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .element__icon {
+    position:absolute;
+    top: 312px;
+    right: 30px;
+
+  }
+
   .footer {
     max-width: 1280px;
   }
-  
