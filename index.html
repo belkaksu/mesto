@@ -32,7 +32,11 @@
             alt="Аватарка пользователя"
           />
           <div class="profile__info">
-            <h2 class="profile__title">Жак-Ив Кусто</h2>
+            <div class="profile__client-info">
+              <h2 class="profile__title">Жак-Ив Кусто</h2>
+              <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+
             <button class="profile__edit-button" type="button">
               <img
                 src="./images/profile__Edit-Button.svg"
@@ -40,7 +44,6 @@
                 class="profile__button-image"
               />
             </button>
-            <p class="profile__subtitle">Исследователь океана</p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
@@ -134,7 +137,9 @@
           </ul>
         </section>
       </main>
-      <footer class="footer"></footer>
+      <footer class="footer page__footer">
+        <p class="footer__desc">&#169; 2020 Mesto Russia</p>
+      </footer>
     </div>
   </body>
 </html>
