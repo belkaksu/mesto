@@ -145,14 +145,10 @@
       <footer class="footer page__footer">
         <p class="footer__desc">&#169; 2020 Mesto Russia</p>
       </footer>
-      <section class="overlay page__overlay">
-
-
-
-          <form class="popup">
-            <div class="popup__main">
-
-              <button class="popup__close-button"></button>
+      <section class="overlay">
+        <form class="popup overlay__popup">
+          <div class="popup__main">
+            <button class="popup__close-button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <fieldset class="popup__profile popup__form-contaiter">
               <input
@@ -167,13 +163,12 @@
               />
             </fieldset>
             <fieldset class="popup__submit popup__form-contaiter">
-              <button
-                type="submit"
-                class="popup__submit-button">Сохранить</button>
+              <button type="submit" class="popup__submit-button">
+                Сохранить
+              </button>
             </fieldset>
           </div>
-          </form>
-        
+        </form>
       </section>
     </div>
   </body>
