@@ -458,7 +458,7 @@
   }
 }
 
-.overlay {
+.popup {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -474,7 +474,7 @@
 
 }
 
-.overlay::before {
+.popup::before {
   content: "";
   position: absolute;
   top: 0;
@@ -486,13 +486,16 @@
 }
 
 
-.overlay_display_active {
+.popup_opened {
   display: flex;
 }
 
+.popup__main {
+  width: 85%;
+  margin: 0 auto;
+}
 
-
-.popup {
+.popup__container {
   width: 88%;
   min-height: 322px;
   display: flex;
@@ -507,26 +510,26 @@
 }
 
 @media screen and (min-width: 425px) {
-  .popup {
+  .popup__container {
     width: 70%;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .popup {
+  .popup__container {
     width: 40%;
 
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .popup {
+  .popup__container {
     width: 40%;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .popup {
+  .popup__container {
     max-width: 430px;
   }
 }
@@ -567,10 +570,7 @@
   cursor: pointer;
 }
 
-.popup__main {
-  width: 85%;
-  margin: 0 auto;
-}
+
 
 .popup__profile {
 }
