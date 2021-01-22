@@ -1,0 +1,16 @@
+.content__profile {
+  width: 88%;
+  margin: 42px auto 36px;
+}
+
+@media screen and (min-width: 768px) {
+  .content__profile {
+    margin: 40px auto 45px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .content__profile {
+    margin: 40px auto 51px;
+  }
+}

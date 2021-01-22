@@ -1,0 +1,22 @@
+.element {
+  width: 282px;
+  height: 361px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .element {
+    margin-bottom: 0;
+  }
+}
+
+.element:last-child {
+  margin-bottom: 0px;
+}

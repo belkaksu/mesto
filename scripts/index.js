@@ -4,7 +4,7 @@ let closePopup = document.querySelector('.popup__close-button');
 
 let togglePopup = function() {
 
-  popup.classList.toggle('popup_opened');
+  popup.classList.toggle('popup__opened');
 }
 
 openPopup.addEventListener('click', togglePopup);
@@ -33,7 +33,7 @@ function formSubmitHandler(event) {
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
 
-  popup.classList.remove('popup_opened');
+  popup.classList.remove('popup__opened');
 }
 
 

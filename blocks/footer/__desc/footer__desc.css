@@ -1,0 +1,20 @@
+.footer__desc {
+  color: #545454;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__desc {
+    font-size: 16px;
+    line-height: 1.22;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .footer__desc {
+    font-size: 18px;
+  }
+}
