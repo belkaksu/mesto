@@ -1,20 +1,21 @@
-.profile__two-columns {
+.profile__main {
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
-  .profile__two-columns {
+  .profile__main {
     max-width: 600px;
-    margin-top: 40px;
     width: 90%;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 20px;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .profile__two-columns {
+  .profile__main {
     max-width: 730px;
+    margin-top: 0;
   }
 }
