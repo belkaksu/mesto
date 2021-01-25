@@ -5,9 +5,7 @@
   background-size: cover;
   border: none;
   background-color: white;
-  position: absolute;
-  top: 312px;
-  right: 30px;
+  
 }
 
 .element__icon:hover {
