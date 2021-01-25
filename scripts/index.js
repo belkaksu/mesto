@@ -52,6 +52,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 function formSubmitHandler(event) {
   event.preventDefault();
   setProfileData();
+  closePopup();
 }
 
 function setProfileData() {
