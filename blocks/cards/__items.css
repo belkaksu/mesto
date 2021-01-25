@@ -1,4 +1,4 @@
-.elements {
+.cards__items {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .elements {
+  .cards__items {
     margin: 0 auto;
     display: grid;
     justify-content: center;
@@ -20,7 +20,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .elements {
+  .cards__items {
     grid-template-columns: repeat(3, 282px);
   }
 }
