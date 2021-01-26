@@ -1,9 +1,9 @@
 .profile__client-info {
-  min-width: 282px;
+
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) {
   .profile__client-info {
-    min-width: 320px;
+    width: 90%;
   }
 }

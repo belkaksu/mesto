@@ -1,12 +1,12 @@
 .profile__main {
-  display: flex;
-  flex-direction: column;
+
 }
 
 @media screen and (min-width: 768px) {
   .profile__main {
+    display: flex;
     max-width: 600px;
-    width: 90%;
+    width: 85%;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 20px;

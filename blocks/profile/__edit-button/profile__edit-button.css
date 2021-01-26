@@ -19,11 +19,13 @@
 
 @media screen and (min-width: 768px) {
   .profile__edit-button {
+    padding: 0;
     position: static;
     margin-top: 10px;
     align-self: start;
     width: 20px;
     height: 20px;
+    
   }
 }
 
