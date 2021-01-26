@@ -58,14 +58,14 @@
                 class="element__image"
               />
               <div class="element__desc">
-              <h2 class="element__title">Карачаевск</h2>
+                <h2 class="element__title">Карачаевск</h2>
 
-              <button
-                class="element__icon"
-                type="button"
-                aria-label="Поставить лайк"
-              ></button>
-            </div>
+                <button
+                  class="element__icon"
+                  type="button"
+                  aria-label="Поставить лайк"
+                ></button>
+              </div>
             </li>
 
             <li class="element">
@@ -159,22 +159,28 @@
         <p class="footer__desc">&#169; 2020 Mesto Russia</p>
       </footer>
       <section class="popup">
-
-        <form class="popup__container">
-          <div class="popup__main">
-            <button class="popup__close-button" type="button"></button>
+        <div class="popup__main">
+          <form class="popup__container">
+            <button
+              class="popup__close-button"
+              type="button"
+              aria-label="Кнопка закрытия попапа"
+            ></button>
             <h2 class="popup__title">Редактировать профиль</h2>
+
+            <!-- В практикуме в теме про формы сказано, что желательно использовать тег fieldset -->
+
             <fieldset class="popup__form-container">
               <input
                 type="text"
-                class="popup__user-name popup__item"
-
-
+                class="popup__item popup_name_data"
+                placeholder="ФИО или ник Пользователя"
+                required
               />
               <input
                 type="text"
-                class="popup__user-job popup__item"
-
+                class="popup__item popup_job_data"
+                placeholder="Род деятельности"
               />
             </fieldset>
             <fieldset class="popup__form-container">
@@ -182,8 +188,8 @@
                 Сохранить
               </button>
             </fieldset>
-          </div>
-        </form>
+          </form>
+        </div>
       </section>
     </div>
     <script src="./scripts/index.js"></script>
