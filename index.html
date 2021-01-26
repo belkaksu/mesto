@@ -160,24 +160,26 @@
       </footer>
       <section class="popup">
         <div class="popup__main">
-          <form class="popup__container">
-            <button
-              class="popup__close-button"
-              type="button"
-              aria-label="Кнопка закрытия попапа"
-            ></button>
+          <button
+            class="popup__close-button"
+            type="button"
+            aria-label="Кнопка закрытия попапа"
+          ></button>
+          <form class="popup__container" name="form">
             <h2 class="popup__title">Редактировать профиль</h2>
 
             <input
               type="text"
-              class="popup__item popup__item_title_data"
+              class="popup__item popup__item_data_title"
               placeholder="ФИО или ник Пользователя"
               required
+              name="data-title"
             />
             <input
               type="text"
-              class="popup__item popup__item_subtitle_data"
+              class="popup__item popup__item_data_subtitle"
               placeholder="Род деятельности"
+              name="data-subtitle"
             />
 
             <button type="submit" class="popup__submit-button">
