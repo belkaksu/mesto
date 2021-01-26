@@ -168,28 +168,21 @@
             ></button>
             <h2 class="popup__title">Редактировать профиль</h2>
 
-            <!-- В практикуме в теме про формы сказано, что желательно использовать тег fieldset -->
+            <input
+              type="text"
+              class="popup__item popup__item_title_data"
+              placeholder="ФИО или ник Пользователя"
+              required
+            />
+            <input
+              type="text"
+              class="popup__item popup__item_subtitle_data"
+              placeholder="Род деятельности"
+            />
 
-            <fieldset class="popup__form-container">
-
-              <!--  -->
-              <input
-                type="text"
-                class="popup__item popup__item_title_data"
-                placeholder="ФИО или ник Пользователя"
-                required
-              />
-              <input
-                type="text"
-                class="popup__item popup__item_subtitle_data"
-                placeholder="Род деятельности"
-              />
-            </fieldset>
-            <fieldset class="popup__form-container">
-              <button type="submit" class="popup__submit-button">
-                Сохранить
-              </button>
-            </fieldset>
+            <button type="submit" class="popup__submit-button">
+              Сохранить
+            </button>
           </form>
         </div>
       </section>
