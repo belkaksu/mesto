@@ -18,7 +18,7 @@ let getProfileData = function () {
 let openPopup = function () {
   let profileData = getProfileData();
   fillPopupForm(profileData);
-  popupElement.classList.add('popup__opened');
+  popupElement.classList.add('popup_display_opened');
 }
 
 function fillPopupForm(profileData) {
@@ -27,12 +27,9 @@ function fillPopupForm(profileData) {
 }
 
 let closePopup = function () {
-  popupElement.classList.remove('popup__opened');
+  popupElement.classList.remove('popup_display_opened');
 }
 
-let togglePopup = function () {
-  popupElement.classList.toggle('popup__opened');
-}
 
 openPopupElement.addEventListener('click', openPopup);
 
