@@ -89,13 +89,14 @@ const initialCards = [
 
 const templateContainer = document.querySelector('#cards__template').content;
 const cardsList = document.querySelector('.cards__items');
-const deleteButton = templateContainer.querySelector('.element__delete-button');
+
 
 function addCardToList(card) {
   const cardElement = templateContainer.cloneNode(true);
   cardElement.querySelector('.element__image').src = card.link;
   cardElement.querySelector('.element__title').textContent = card.name;
   cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
+  cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
   cardsList.append(cardElement);
 
 
@@ -109,6 +110,20 @@ render()
 
 function handleDelete(event) {
   event.target.closest('.element').remove();
+
+}
+
+function handleLike(event) {
+
+  const className = 'element__icon_button_active';
+  const likeButton = event.target.closest('.element__icon');
+  const isLiked = likeButton.classList.contains(className);
+  if (isLiked) {
+    likeButton.classList.remove(className);
+
+  } else {
+    likeButton.classList.add(className);
+  }
 
 }
 
