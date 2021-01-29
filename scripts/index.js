@@ -90,28 +90,14 @@ const initialCards = [
 const templateContainer = document.querySelector('#cards__template').content;
 const cardsList = document.querySelector('.cards__items');
 
-
-function addCardToList(card) {
-  const cardElement = templateContainer.cloneNode(true);
-  cardElement.querySelector('.element__image').src = card.link;
-  cardElement.querySelector('.element__title').textContent = card.name;
-  cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
-  cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
-  cardsList.append(cardElement);
-
-
-}
-
-function render() {
-  initialCards.forEach(addCardToList);
-}
-
-render()
+// удаление карточки
 
 function handleDelete(event) {
   event.target.closest('.element').remove();
 
 }
+
+// функуция, проставляющая лайки
 
 function handleLike(event) {
 
@@ -126,6 +112,27 @@ function handleLike(event) {
   }
 
 }
+
+// все действия с template
+
+function addCardToList(card) {
+  const cardElement = templateContainer.cloneNode(true);
+  cardElement.querySelector('.element__image').src = card.link;
+  cardElement.querySelector('.element__title').textContent = card.name;
+  cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
+  cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
+  cardsList.append(cardElement);
+
+}
+  // Действия с массивом initialCards
+  
+function render() {
+  initialCards.forEach(addCardToList);
+}
+
+render()
+
+
 
 
 
