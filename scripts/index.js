@@ -37,7 +37,6 @@ function setProfileData() {
 
 }
 
-
 //  Вставляем введенную информацию в профиль, закрываем попап нажатием на кнопку "сохранить"
 
 function formSubmitHandler(event) {
@@ -45,8 +44,6 @@ function formSubmitHandler(event) {
   setProfileData();
   closePopup();
 }
-
-
 
 openPopupElement.addEventListener('click', openPopup);
 
@@ -58,14 +55,9 @@ popupElement.addEventListener('mousedown', function (event) {
     closePopup();
 })
 
-
 // Отправляем форму
 
 formElement.addEventListener('submit', formSubmitHandler);
-
-
-
-
 
 
 
