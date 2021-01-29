@@ -88,21 +88,31 @@ const initialCards = [
 ];
 
 const templateContainer = document.querySelector('#cards__template').content;
-const listItems = document.querySelector('.cards__items');
+const cardsList = document.querySelector('.cards__items');
+const deleteButton = templateContainer.querySelector('.element__delete-button');
 
-function renderItem(card) {
+function addCardToList(card) {
   const cardElement = templateContainer.cloneNode(true);
   cardElement.querySelector('.element__image').src = card.link;
   cardElement.querySelector('.element__title').textContent = card.name;
-  listItems.append(cardElement);
+  cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
+  cardsList.append(cardElement);
+
 
 }
 
 function render() {
-  initialCards.forEach(renderItem);
+  initialCards.forEach(addCardToList);
 }
 
 render()
+
+function handleDelete(event) {
+  event.target.closest('.element').remove();
+
+}
+
+
 
 
 
