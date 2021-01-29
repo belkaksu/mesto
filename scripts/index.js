@@ -87,5 +87,22 @@ const initialCards = [
   }
 ];
 
+const templateContainer = document.querySelector('#cards__template').content;
+const listItems = document.querySelector('.cards__items');
+
+function renderItem(card) {
+  const cardElement = templateContainer.cloneNode(true);
+  cardElement.querySelector('.element__image').src = card.link;
+  cardElement.querySelector('.element__title').textContent = card.name;
+  listItems.append(cardElement);
+
+}
+
+function render() {
+  initialCards.forEach(renderItem);
+}
+
+render()
+
 
 
