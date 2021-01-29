@@ -1,0 +1,12 @@
+.element__delete-button {
+  width: 18px;
+  height: 19.3px;
+  background-image: url('../../../images/profile__delete-button.svg');
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  position: absolute;
+  right: 15px;
+  top: 18px;
+  }
