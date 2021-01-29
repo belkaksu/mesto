@@ -60,7 +60,32 @@ popupElement.addEventListener('mousedown', function (event) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 
-
+const initialCards = [
+  {
+    name: 'Байкал',
+    link: 'https://images.unsplash.com/photo-1490879112094-281fea0883dc?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80'
+  },
+  {
+    name: 'Карачаево-Черкессия',
+    link: 'https://images.unsplash.com/photo-1584533732622-ed52ed0025c6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+  },
+  {
+    name: 'Карелия',
+    link: 'https://images.unsplash.com/photo-1573156667495-f14c98bc2ebc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2001&q=80'
+  },
+  {
+    name: 'Эльбрус',
+    link: 'https://images.unsplash.com/photo-1518277232585-44d47773da22?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80'
+  },
+  {
+    name: 'Дагестан',
+    link: 'https://images.unsplash.com/photo-1572521620972-07eecf7d945e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+  }
+];
 
 
 
