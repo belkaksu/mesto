@@ -52,36 +52,25 @@
         </section>
         <section class="cards">
           <ul class="cards__items">
-            <li class="element">
-              <img
-                src="./images/elements__karachaevsk.jpg"
-                alt="Сентинский храм в Карачаево-Черкессии"
-                class="element__image"
-              />
-              <button
-                class="element__delete-button"
-                type="button"
-                aria-label="Удалить карточку"
-              ></button>
-              <div class="element__desc">
-                <h2 class="element__title">Карачаевск</h2>
-
+            <template id="element">
+              <li class="element">
+                <img class="element__image" />
                 <button
-                  class="element__icon"
+                  class="element__delete-button"
                   type="button"
-                  aria-label="Поставить лайк"
+                  aria-label="Удалить карточку"
                 ></button>
-              </div>
-            </li>
+                <div class="element__desc">
+                  <h2 class="element__title"></h2>
 
-
-
-
-
-
-
-
-
+                  <button
+                    class="element__icon"
+                    type="button"
+                    aria-label="Поставить лайк"
+                  ></button>
+                </div>
+              </li>
+            </template>
 
 
             
