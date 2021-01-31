@@ -124,7 +124,7 @@ function addCardToList(card) {
   cardsList.append(cardElement);
 
 }
-  // Действия с массивом initialCards
+// Действия с массивом initialCards
 
 function render() {
   initialCards.forEach(addCardToList);
@@ -140,6 +140,8 @@ let popupNewCardElement = document.querySelector('.popup-new-card');
 let popupNewCardCloseButton = popupNewCardElement.querySelector('.popup-new-card__close-button');
 let popupNewCardFormElement = popupNewCardElement.querySelector('.popup-new-card__container');
 
+let newCardNameInput = popupNewCardElement.querySelector('.popup-new-card__item_data_name');
+let newCardPlaceInput = popupNewCardElement.querySelector('.popup-new-card__item_data_place');
 
 function openPopupNewCard() {
   popupNewCardElement.classList.add('popup-new-card_display_opened');
@@ -153,5 +155,33 @@ function closePopupNewCard() {
 popupNewCardOpenButton.addEventListener('click', openPopupNewCard);
 
 popupNewCardCloseButton.addEventListener('click', closePopupNewCard);
+
+popupNewCardElement.addEventListener('mousedown', function (event) {
+  if (event.target === event.currentTarget)
+    closePopupNewCard();
+})
+
+function setProfileDataNewCard() {
+  const newCardElement = templateContainer.cloneNode(true);
+  newCardElement.querySelector('.element__image').src = newCardPlaceInput.value;
+  newCardElement.querySelector('.element__title').textContent = newCardNameInput.value;
+  cardsList.prepend(newCardElement);
+
+}
+
+
+function newCardFormSubmitHandler(event) {
+  event.preventDefault();
+  setProfileDataNewCard();
+  closePopupNewCard();
+}
+
+
+popupNewCardFormElement.addEventListener('click', newCardFormSubmitHandler);
+
+
+
+
+
 
 
