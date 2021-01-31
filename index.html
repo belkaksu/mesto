@@ -109,6 +109,39 @@
           </form>
         </div>
       </section>
+
+      <section class="popup-new-card">
+        <div class="popup-new-card__main">
+          <button
+            class="popup-new-card__close-button"
+            type="button"
+            aria-label="Кнопка закрытия попапа"
+          ></button>
+          <form class="popup-new-card__container" name="popupNewCardFor">
+            <h2 class="popup-new-card__title">Новое место</h2>
+
+            <input
+              type="text"
+              class="popup-new-card__item popup-new-card__item_data_name"
+              placeholder="Название"
+              required
+              name="dataName"
+            />
+            <input
+              type="url"
+              class="popup-new-card__item popup-new-card__item_data_place"
+              placeholder="Ссылка на картинку"
+              name="dataPlace"
+              required
+            />
+
+            <button type="submit" class="popup-new-card__submit-button">
+              Создать
+            </button>
+          </form>
+        </div>
+      </section>
+
     </div>
     <script src="./scripts/index.js"></script>
   </body>

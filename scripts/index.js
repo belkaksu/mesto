@@ -125,7 +125,7 @@ function addCardToList(card) {
 
 }
   // Действия с массивом initialCards
-  
+
 function render() {
   initialCards.forEach(addCardToList);
 }
@@ -133,8 +133,25 @@ function render() {
 render()
 
 
+// Прописываем условия для popup-new-card
+
+let popupNewCardOpenButton = document.querySelector('.profile__add-button');
+let popupNewCardElement = document.querySelector('.popup-new-card');
+let popupNewCardCloseButton = popupNewCardElement.querySelector('.popup-new-card__close-button');
+let popupNewCardFormElement = popupNewCardElement.querySelector('.popup-new-card__container');
 
 
+function openPopupNewCard() {
+  popupNewCardElement.classList.add('popup-new-card_display_opened');
 
+}
+
+function closePopupNewCard() {
+  popupNewCardElement.classList.remove('popup-new-card_display_opened');
+}
+
+popupNewCardOpenButton.addEventListener('click', openPopupNewCard);
+
+popupNewCardCloseButton.addEventListener('click', closePopupNewCard);
 
 
