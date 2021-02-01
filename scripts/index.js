@@ -157,7 +157,7 @@ function closePopupNewCard() {
   popupNewCardElement.classList.remove('popup-new-card_display_opened');
 }
 
-
+// вставляем вводимые данные в поля input
 
 
 function setProfileDataNewCard() {
@@ -178,8 +178,6 @@ function newCardFormSubmitHandler(event) {
 
 
 popupNewCardFormElement.addEventListener('submit', newCardFormSubmitHandler);
-
-
 
 popupNewCardOpenButton.addEventListener('click', openPopupNewCard);
 
