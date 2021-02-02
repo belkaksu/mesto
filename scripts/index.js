@@ -115,11 +115,13 @@ function handleLike(event) {
 
 const imagePopup = document.querySelector('.popup-image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
-const picturePopupImageInput = imagePopup.querySelector('.popup-image__picture');
-const textPopupImageInput = imagePopup.querySelector('.popup-image__subtitle')
+const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
+const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle')
 
-function openImagePopup() {
+function openImagePopup(link, name) {
   imagePopup.classList.add('popup-image_display_opened');
+  imagePopupImageElement.src=link;
+  imagePopupTextElement.textContent=name;
 }
 
 function closeImagePopup() {
@@ -134,8 +136,10 @@ function createNewCard(link, name) {
   const cardElement = templateContainer.cloneNode(true);
   const imageElement = cardElement.querySelector('.element__image');
   imageElement.src = link;
-  imageElement.addEventListener('click', openImagePopup);
+  imageElement.addEventListener('click', f => openImagePopup(link, name));
   cardElement.querySelector('.element__title').textContent = name;
+
+
   cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
   cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
 
