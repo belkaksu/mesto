@@ -118,11 +118,16 @@ const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-butt
 const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
 const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle')
 
+// открытие popup-image
+
 function openImagePopup(link, name) {
   imagePopup.classList.add('popup-image_display_opened');
   imagePopupImageElement.src=link;
   imagePopupTextElement.textContent=name;
+  imagePopupTextElement.alt=name;
 }
+
+// закрытие popup-image
 
 function closeImagePopup() {
   imagePopup.classList.remove('popup-image_display_opened');
@@ -130,26 +135,31 @@ function closeImagePopup() {
 
 imagePopupCloseButton.addEventListener('click', closeImagePopup);
 
-// все действия с template
+// действия с template
 
 function createNewCard(link, name) {
   const cardElement = templateContainer.cloneNode(true);
+
+
   const imageElement = cardElement.querySelector('.element__image');
   imageElement.src = link;
-  imageElement.addEventListener('click', f => openImagePopup(link, name));
-  cardElement.querySelector('.element__title').textContent = name;
+  imageElement.addEventListener('click', function(event) {
+    openImagePopup(link, name);
+  } );
 
+  cardElement.querySelector('.element__title').textContent = name;
 
   cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
   cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
 
-
-
   return cardElement;
 }
 
-function addCardToList(cardParams) {
-  const cardElement = createNewCard(cardParams.link, cardParams.name);
+// Добавляем новую карточку на страницу
+
+
+function addCardToList(link, name) {
+  const cardElement = createNewCard(link, name);
   cardsList.append(cardElement);
 
 }
@@ -158,7 +168,9 @@ function addCardToList(cardParams) {
 // Действия с массивом initialCards
 
 function render() {
-  initialCards.forEach(addCardToList);
+  initialCards.forEach(function(item) {
+    addCardToList(item.link, item.name);
+  });
 }
 
 render()
@@ -215,17 +227,4 @@ popupNewCardElement.addEventListener('mousedown', function (event) {
 })
 
 
-// Прописываем условия для popup-image
 
-
-
-
-
-
-
-
-// function popupImageRender() {
-//   initialCards.forEach(createPopupImage);
-// }
-
-// popupImageRender()
