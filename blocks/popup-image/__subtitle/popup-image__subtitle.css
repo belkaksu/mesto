@@ -1,0 +1,10 @@
+.popup-image__subtitle {
+  max-width: 240px;
+  margin-top: 10px;
+  color: white;
+  font-size: 12px;
+  font-weight: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

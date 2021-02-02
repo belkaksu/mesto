@@ -1,4 +1,6 @@
 .popup-new-card_display_opened {
   display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 

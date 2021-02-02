@@ -1,20 +1,16 @@
-.popup-new-card {
-
+.popup-image {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility .5s, opacity 1s linear;
 }
 
-.popup-new-card::before {
+.popup-image::before {
   content: "";
   position: absolute;
   top: 0;
@@ -22,5 +18,5 @@
   right: 0;
   bottom: 0;
   background: #000000;
-  opacity: 0.5;
+  opacity: 0.9;
 }

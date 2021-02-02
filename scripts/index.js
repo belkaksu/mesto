@@ -115,11 +115,6 @@ function handleLike(event) {
 
 // все действия с template
 
-function addCardToList(cardParams) {
-  const cardElement = createNewCard(cardParams.link,cardParams.name);
-  cardsList.append(cardElement);
-
-}
 function createNewCard(link, name) {
   const cardElement = templateContainer.cloneNode(true);
   cardElement.querySelector('.element__image').src = link;
@@ -128,6 +123,13 @@ function createNewCard(link, name) {
   cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
   return cardElement;
 }
+
+function addCardToList(cardParams) {
+  const cardElement = createNewCard(cardParams.link,cardParams.name);
+  cardsList.append(cardElement);
+
+}
+
 
 // Действия с массивом initialCards
 
@@ -189,4 +191,41 @@ popupNewCardElement.addEventListener('mousedown', function (event) {
 })
 
 
+// Прописываем условия для popup-image
 
+const popupImageElement = document.querySelector('.popup-image');
+const closePopupImageElement = popupImageElement.querySelector('.popup-image__close-button');
+const openPopupImageElement = popupImageElement.querySelector('.popup-image__picture');
+const picturePopupImageInput = popupImageElement.querySelector('.popup-image__picture');
+const textPopupImageInput = popupImageElement.querySelector('.popup-image__subtitle')
+
+function openPopupImage() {
+  popupImageElement.classList.add('popup-image_display_opened');
+}
+
+function closePopupImage() {
+  popupImageElement.classList.remove('popup-image_display_opened');
+}
+
+
+
+
+
+// function createPopupImage() {
+//   const cardElement = templateContainer.cloneNode(true);
+//   const templateImageElement = cardElement.querySelector('.element__image');
+//   picturePopupImageInput.value = templateImageElement.src;
+//   textPopupImageInput.value = cardElement.querySelector('.element__title').textContent;
+
+//   templateImageElement.addEventListener('click', openPopupImage);
+//   closePopupImageElement.addEventListener('click', closePopupImage);
+//   return cardElement
+
+
+// }
+
+// function popupImageRender() {
+//   initialCards.forEach(createPopupImage);
+// }
+
+// popupImageRender()
