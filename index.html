@@ -11,7 +11,7 @@
     <title>Место</title>
 
     <link rel="stylesheet" href="./pages/index.css" />
-    
+
   </head>
   <body>
     <div class="page">
@@ -52,31 +52,14 @@
         </section>
         <section class="cards">
           <ul class="cards__items">
-            <template id="cards__template">
-              <li class="element">
-                <img class="element__image" />
-                <button
-                  class="element__delete-button"
-                  type="button"
-                  aria-label="Удалить карточку"
-                ></button>
-                <div class="element__desc">
-                  <h2 class="element__title"></h2>
 
-                  <button
-                    class="element__icon"
-                    type="button"
-                    aria-label="Поставить лайк"
-                  ></button>
-                </div>
-              </li>
-            </template>
           </ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__desc">&#169; 2020 Mesto Russia</p>
       </footer>
+
       <section class="popup">
         <div class="popup__main">
           <button
@@ -84,7 +67,7 @@
             type="button"
             aria-label="Кнопка закрытия попапа"
           ></button>
-          <form class="popup__container" name="popupForm">
+          <form class="popup__container popup__container_profile_data" name="popupForm">
             <h2 class="popup__title">Редактировать профиль</h2>
 
             <input
@@ -108,7 +91,43 @@
         </div>
       </section>
 
-      <section class="popup-new-card">
+      <section class="popup">
+        <div class="popup__main">
+          <button
+            class="popup__close-button"
+            type="button"
+            aria-label="Кнопка закрытия попапа"
+          ></button>
+          <form class="popup__container popup__container_add_card" name="popupAddCardForm">
+            <h2 class="popup__title">Новое место</h2>
+
+            <input
+              type="text"
+              class="popup__item popup__item_data_name"
+              placeholder="Название"
+              required
+              name="dataName"
+            />
+            />
+            <input
+              type="url"
+              class="popup__item popup__item_data_place"
+              placeholder="Ссылка на картинку"
+              name="dataPlace"
+              required
+            />
+            />
+
+            <button type="submit" class="popup__submit-button">
+              Создать
+            </button>
+          </form>
+        </div>
+      </section>
+
+
+
+      <!-- <section class="popup-new-card">
         <div class="popup-new-card__main">
           <button
             class="popup-new-card__close-button"
@@ -126,7 +145,7 @@
               name="dataName"
             />
             <input
-              type="text"
+              type="url"
               class="popup-new-card__item popup-new-card__item_data_place"
               placeholder="Ссылка на картинку"
               name="dataPlace"
@@ -138,7 +157,7 @@
             </button>
           </form>
         </div>
-      </section>
+      </section> -->
 
       <section class="popup-image">
         <div class="popup-image__main">
@@ -160,7 +179,25 @@
         </div>
       </section>
     </div>
+    <template id="cards__template">
+      <li class="element">
+        <img class="element__image" />
+        <button
+          class="element__delete-button"
+          type="button"
+          aria-label="Удалить карточку"
+        ></button>
+        <div class="element__desc">
+          <h2 class="element__title"></h2>
 
+          <button
+            class="element__icon"
+            type="button"
+            aria-label="Поставить лайк"
+          ></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
