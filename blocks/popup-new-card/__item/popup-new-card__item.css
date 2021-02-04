@@ -1,4 +1,4 @@
-.popup__item {
+.popup-new-card__item {
   width: 100%;
   padding: 0 0 13px 0;
   border: 0;
@@ -10,6 +10,6 @@
 
 }
 
-.popup__item:last-of-type {
+.popup-new-card__item:last-of-type {
   margin-bottom: 45px;
 }
