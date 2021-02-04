@@ -52,7 +52,7 @@ function setProfileData() {
 
 //  Вставляем введенную информацию в профиль, закрываем попап нажатием на кнопку "сохранить"
 
-function formSubmitHandler(event) {
+function handleFormProfileSubmit(event) {
   event.preventDefault();
   setProfileData();
   closeProfilePopup();
@@ -70,35 +70,10 @@ popupElement.addEventListener('mousedown', function (event) {
 
 // Отправляем форму
 
-profileFormElement.addEventListener('submit', formSubmitHandler);
+profileFormElement.addEventListener('submit', handleFormProfileSubmit);
 
 
-const initialCards = [
-  {
-    name: 'Байкал',
-    link: 'https://images.unsplash.com/photo-1490879112094-281fea0883dc?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80'
-  },
-  {
-    name: 'Сулакский каньон',
-    link: 'https://images.unsplash.com/photo-1598535348425-e76a7cc312d5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-  },
-  {
-    name: 'Карелия',
-    link: 'https://images.unsplash.com/photo-1573156667495-f14c98bc2ebc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2001&q=80'
-  },
-  {
-    name: 'Зеленоград',
-    link: 'https://images.unsplash.com/photo-1536577722576-fcfdbcad17e9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80'
-  },
-  {
-    name: 'Красная Поляна',
-    link: 'https://images.unsplash.com/photo-1595762655589-ad9796b07894?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80'
-  }
-];
+// Реализация добавления карточек и подключение функционала
 
 const templateContainer = document.querySelector('#cards__template').content;
 const cardsList = document.querySelector('.cards__items');
@@ -192,20 +167,20 @@ render()
 // Прописываем условия для popup-new-card
 
 const popupNewCardOpenButton = document.querySelector('.profile__add-button');
-const popupNewCardElement = document.querySelector('.popup-new-card');
-const popupNewCardCloseButton = popupNewCardElement.querySelector('.popup-new-card__close-button');
-const popupNewCardFormElement = popupNewCardElement.querySelector('.popup-new-card__container');
+const popupNewCardElement = document.querySelector('.popup_add_card');
+const popupNewCardCloseButton = popupNewCardElement.querySelector('.popup__close-button');
+const popupNewCardFormElement = popupNewCardElement.querySelector('.popup__container_add_card');
 
-const newCardNameInput = popupNewCardElement.querySelector('.popup-new-card__item_data_name');
-const newCardPlaceInput = popupNewCardElement.querySelector('.popup-new-card__item_data_place');
+const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_name');
+const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_place');
 
-function openPopupNewCard() {
-  popupNewCardElement.classList.add('popup-new-card_display_opened');
+function openNewCardPopup() {
+  openPopup(popupNewCardElement);
 
 }
 
 function closePopupNewCard() {
-  popupNewCardElement.classList.remove('popup-new-card_display_opened');
+  closePopup(popupNewCardElement);
 }
 
 // вставляем вводимые данные в поля input
@@ -216,21 +191,26 @@ function setProfileDataNewCard() {
   const newCardElement = createNewCard(newCardPlaceInput.value, newCardNameInput.value);
   cardsList.prepend(newCardElement);
 
+}
 
+function cleanNewCardForm() {
+  newCardNameInput.value = "";
+  newCardPlaceInput.value = ""
 }
 
 
-function newCardFormSubmitHandler(event) {
+function handleFormNewCardSubmit(event) {
   event.preventDefault();
   setProfileDataNewCard();
   closePopupNewCard();
+  cleanNewCardForm();
 
 }
 
 
-popupNewCardFormElement.addEventListener('submit', newCardFormSubmitHandler);
+popupNewCardFormElement.addEventListener('submit', handleFormNewCardSubmit);
 
-popupNewCardOpenButton.addEventListener('click', openPopupNewCard);
+popupNewCardOpenButton.addEventListener('click', openNewCardPopup);
 
 popupNewCardCloseButton.addEventListener('click', closePopupNewCard);
 
