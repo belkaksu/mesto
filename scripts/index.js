@@ -101,7 +101,7 @@ function handleDelete(event) {
 
 function handleLike(event) {
 
-  const className = 'element__icon_button_active';
+  const className = 'element__icon_active';
   const likeButton = event.target.closest('.element__icon');
   const isLiked = likeButton.classList.contains(className);
   if (isLiked) {
