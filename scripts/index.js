@@ -12,6 +12,19 @@ const profileJobElement = document.querySelector('.profile__subtitle')
 
 // Объявляем функцию, которая вставляет текстовое содержимое в поля Input
 
+// универсальная функция открытия попапа
+
+function openPopup(popup) {
+  popup.classList.add('popup_display_opened');
+}
+
+// универсальная функция закрытия попапа
+
+function closePopup(popup) {
+  popup.classList.remove('popup_display_opened');
+}
+
+
 function fillProfilePopupForm() {
   profileNameInput.value = profileNameElement.textContent;
   profileJobInput.value = profileJobElement.textContent;
@@ -21,13 +34,13 @@ function fillProfilePopupForm() {
 // Открываем попап и вставляем данные из профиля в поля Input
 const openProfilePopup = function () {
   fillProfilePopupForm();
-  popupElement.classList.add('popup_display_opened');
+  openPopup(popupElement);
 }
 
 // Закрываем попап
 
 const closeProfilePopup = function () {
-  popupElement.classList.remove('popup_display_opened');
+  closePopup(popupElement);
 }
 
 // Объявляем функцию, которая вставляет введенные данные в профиль пользователя
