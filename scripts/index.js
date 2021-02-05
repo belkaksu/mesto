@@ -92,7 +92,7 @@ function handleDelete(event) {
 
 function handleLike(event) {
   event.target.classList.toggle('element__icon_active');
- 
+
 
 }
 
@@ -189,8 +189,7 @@ function setProfileDataNewCard() {
 }
 
 function cleanNewCardForm() {
-  newCardNameInput.value = "";
-  newCardPlaceInput.value = ""
+  popupNewCardFormElement.reset();
 }
 
 
