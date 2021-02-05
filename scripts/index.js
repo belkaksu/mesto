@@ -1,6 +1,6 @@
 const profilePopupOpenButton = document.querySelector('.profile__edit-button');
 const popupElement = document.querySelector('.popup');
-const profilePopupCloseButton = document.querySelector('.popup__close-button');
+const PopupCloseButton = document.querySelector('.close-button');
 const profileFormElement = document.querySelector('.popup__container_profile_data');
 
 const profileNameInput = document.querySelector('.popup__item_data_title');
@@ -60,7 +60,7 @@ function handleFormProfileSubmit(event) {
 
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
-profilePopupCloseButton.addEventListener('click', closeProfilePopup);
+PopupCloseButton.addEventListener('click', closeProfilePopup);
 
 //  Закрываем попап нажатием на дисплей
 popupElement.addEventListener('mousedown', function (event) {
@@ -102,7 +102,7 @@ function handleLike(event) {
 }
 
 const imagePopup = document.querySelector('.popup-image');
-const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
+const imagePopupCloseButton = imagePopup.querySelector('.close-button');
 const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
 const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle')
 
@@ -168,7 +168,7 @@ render()
 
 const popupNewCardOpenButton = document.querySelector('.profile__add-button');
 const popupNewCardElement = document.querySelector('.popup_add_card');
-const popupNewCardCloseButton = popupNewCardElement.querySelector('.popup__close-button');
+const popupNewCardCloseButton = popupNewCardElement.querySelector('.close-button');
 const popupNewCardFormElement = popupNewCardElement.querySelector('.popup__container_add_card');
 
 const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_name');
