@@ -73,6 +73,9 @@ popupElement.addEventListener('mousedown', function (event) {
 profileFormElement.addEventListener('submit', handleFormProfileSubmit);
 
 
+
+
+
 // Реализация добавления карточек и подключение функционала
 
 const templateContainer = document.querySelector('#cards__template').content;
