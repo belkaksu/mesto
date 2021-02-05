@@ -91,16 +91,8 @@ function handleDelete(event) {
 // функуция, проставляющая лайки
 
 function handleLike(event) {
-
-  const className = 'element__icon_active';
-  const likeButton = event.target.closest('.element__icon');
-  const isLiked = likeButton.classList.contains(className);
-  if (isLiked) {
-    likeButton.classList.remove(className);
-
-  } else {
-    likeButton.classList.add(className);
-  }
+  event.target.classList.toggle('element__icon_active');
+ 
 
 }
 
