@@ -11,7 +11,6 @@
     <title>Место</title>
 
     <link rel="stylesheet" href="./pages/index.css" />
-
   </head>
   <body>
     <div class="page">
@@ -51,23 +50,24 @@
           </div>
         </section>
         <section class="cards">
-          <ul class="cards__items">
-
-          </ul>
+          <ul class="cards__items"></ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__desc">&#169; 2020 Mesto Russia</p>
       </footer>
 
-      <section class="popup">
+      <section class="popup popup">
         <div class="popup__main">
           <button
             class="close-button"
             type="button"
             aria-label="Кнопка закрытия попапа"
           ></button>
-          <form class="popup__container popup__container_profile_data" name="popupForm">
+          <form
+            class="popup__container popup__container_profile_data"
+            name="popupForm"
+          >
             <h2 class="popup__title">Редактировать профиль</h2>
 
             <input
@@ -91,14 +91,17 @@
         </div>
       </section>
 
-      <section class="popup popup_add_card">
+      <section class="popup popup-add-card">
         <div class="popup__main">
           <button
             class="close-button"
             type="button"
             aria-label="Кнопка закрытия попапа"
           ></button>
-          <form class="popup__container popup__container_add_card" name="popupAddCardForm">
+          <form
+            class="popup__container popup__container_add_card"
+            name="popupAddCardForm"
+          >
             <h2 class="popup__title">Новое место</h2>
 
             <input
@@ -117,47 +120,10 @@
               required
             />
 
-
-            <button type="submit" class="popup__submit-button">
-              Создать
-            </button>
+            <button type="submit" class="popup__submit-button">Создать</button>
           </form>
         </div>
       </section>
-
-
-
-      <!-- <section class="popup-new-card">
-        <div class="popup-new-card__main">
-          <button
-            class="popup-new-card__close-button"
-            type="button"
-            aria-label="Кнопка закрытия попапа"
-          ></button>
-          <form class="popup-new-card__container" name="popupNewCardFor">
-            <h2 class="popup-new-card__title">Новое место</h2>
-
-            <input
-              type="text"
-              class="popup-new-card__item popup-new-card__item_data_name"
-              placeholder="Название"
-              required
-              name="dataName"
-            />
-            <input
-              type="url"
-              class="popup-new-card__item popup-new-card__item_data_place"
-              placeholder="Ссылка на картинку"
-              name="dataPlace"
-              required
-            />
-
-            <button type="submit" class="popup-new-card__submit-button">
-              Создать
-            </button>
-          </form>
-        </div>
-      </section> -->
 
       <section class="popup popup-image">
         <div class="popup-image__main">
@@ -166,15 +132,13 @@
             type="button"
             aria-label="Кнопка закрытия попапа"
           ></button>
-            <figure class="popup-image__container">
+          <figure class="popup-image__container">
             <img
               class="popup-image__picture"
               src="https://imgholder.ru/323x300/9dbf16/fff&text=image"
               alt="Фото"
             />
-            <figcaption class="popup-image__subtitle">
-
-            </figcaption>
+            <figcaption class="popup-image__subtitle"></figcaption>
           </figure>
         </div>
       </section>

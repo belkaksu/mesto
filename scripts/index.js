@@ -105,9 +105,9 @@ const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle')
 
 function openImagePopup(link, name) {
   imagePopup.classList.add('popup-image_display_opened');
-  imagePopupImageElement.src=link;
-  imagePopupTextElement.textContent=name;
-  imagePopupTextElement.alt=name;
+  imagePopupImageElement.src = link;
+  imagePopupTextElement.textContent = name;
+  imagePopupTextElement.alt = name;
 }
 
 // закрытие popup-image
@@ -126,9 +126,9 @@ function createNewCard(link, name) {
 
   const imageElement = cardElement.querySelector('.element__image');
   imageElement.src = link;
-  imageElement.addEventListener('click', function(event) {
+  imageElement.addEventListener('click', function () {
     openImagePopup(link, name);
-  } );
+  });
 
   cardElement.querySelector('.element__title').textContent = name;
 
@@ -141,9 +141,9 @@ function createNewCard(link, name) {
 // Добавляем новую карточку на страницу
 
 
-function addCardToList(link, name) {
+function addCardToList(cardConteinerElement, link, name) {
   const cardElement = createNewCard(link, name);
-  cardsList.append(cardElement);
+  cardConteinerElement.append(cardElement);
 
 }
 
@@ -151,8 +151,8 @@ function addCardToList(link, name) {
 // Действия с массивом initialCards
 
 function render() {
-  initialCards.forEach(function(item) {
-    addCardToList(item.link, item.name);
+  initialCards.forEach(function (item) {
+    addCardToList(cardsList, item.link, item.name);
   });
 }
 
@@ -162,7 +162,7 @@ render()
 // Прописываем условия для popup-new-card
 
 const popupNewCardOpenButton = document.querySelector('.profile__add-button');
-const popupNewCardElement = document.querySelector('.popup_add_card');
+const popupNewCardElement = document.querySelector('.popup-add-card');
 const popupNewCardCloseButton = popupNewCardElement.querySelector('.close-button');
 const popupNewCardFormElement = popupNewCardElement.querySelector('.popup__container_add_card');
 
@@ -181,10 +181,10 @@ function closePopupNewCard() {
 // вставляем вводимые данные в поля input
 
 
-function setProfileDataNewCard() {
+function prependCardToCardsContainer(cardConteinerElement, link, name) {
 
-  const newCardElement = createNewCard(newCardPlaceInput.value, newCardNameInput.value);
-  cardsList.prepend(newCardElement);
+  const newCardElement = createNewCard(link, name);
+  cardConteinerElement.prepend(newCardElement);
 
 }
 
@@ -195,7 +195,9 @@ function cleanNewCardForm() {
 
 function handleFormNewCardSubmit(event) {
   event.preventDefault();
-  setProfileDataNewCard();
+  const link = newCardPlaceInput.value;
+  const name = newCardNameInput.value;
+  prependCardToCardsContainer(cardsList, link, name);
   closePopupNewCard();
   cleanNewCardForm();
 
