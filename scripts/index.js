@@ -105,11 +105,11 @@ const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle')
 // открытие popup-image
 
 function openImagePopup(link, name) {
- 
+
   openPopup(imagePopup);
   imagePopupImageElement.src = link;
   imagePopupTextElement.textContent = name;
-  imagePopupTextElement.alt = name;
+  imagePopupImageElement.alt = name;
 }
 
 // закрытие popup-image
@@ -118,7 +118,7 @@ function closeImagePopup() {
   closePopup(imagePopup);
 }
 
-imagePopupCloseButton.addEventListener('click', closeImagePopup);
+
 
 // действия с template
 
@@ -158,7 +158,13 @@ function render() {
   });
 }
 
+imagePopupCloseButton.addEventListener('click', closeImagePopup);
+
 render()
+
+
+
+
 
 
 // Прописываем условия для popup-new-card
