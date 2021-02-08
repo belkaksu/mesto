@@ -24,7 +24,11 @@ function closePopup(popup) {
   popup.classList.remove('popup_display_opened');
 }
 
-// универсальная функция закрытия попапа нажатием на фон родителя
+// универсальная функция закрытия попапа кликом на область все формы
+
+function handleTargetClosePopup(event) {
+  return event.target === event.currentTarget;
+}
 
 function fillProfilePopupForm() {
   profileNameInput.value = profileNameElement.textContent;
@@ -64,7 +68,7 @@ profilePopupCloseButton.addEventListener('click', function() {
 
 //  Закрываем попап нажатием на дисплей
 profilePopupElement.addEventListener('mousedown', function (event) {
-  if (event.target === event.currentTarget)
+    handleTargetClosePopup();
     closePopup(profilePopupElement);
 })
 
@@ -209,9 +213,13 @@ popupNewCardCloseButton.addEventListener('click', function() {
 });
 
 popupNewCardElement.addEventListener('mousedown', function (event) {
-  if (event.target === event.currentTarget)
+  handleTargetClosePopup();
   closePopup(popupNewCardElement);
 })
 
 
+
+function handleTargetClosePopup(event) {
+  return event.target === event.currentTarget;
+}
 
