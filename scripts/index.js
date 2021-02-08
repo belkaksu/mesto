@@ -1,5 +1,5 @@
 const profilePopupOpenButton = document.querySelector('.profile__edit-button');
-const popupCloseButton = document.querySelector('.close-button');
+const profilePopupCloseButton = document.querySelector('.popup-profile__close-button');
 const profilePopupElement = document.querySelector('.popup-profile')
 const profileFormElement = document.querySelector('.popup__container_profile_data');
 
@@ -39,9 +39,8 @@ const openProfilePopup = function () {
 
 // Закрываем попап
 
-const closeProfilePopup = function () {
-  closePopup(profilePopupElement);
-}
+closePopup(profilePopupElement);
+
 
 // Объявляем функцию, которая вставляет введенные данные в профиль пользователя
 function setProfileData() {
@@ -55,17 +54,17 @@ function setProfileData() {
 function handleFormProfileSubmit(event) {
   event.preventDefault();
   setProfileData();
-  closeProfilePopup();
+  closePopup(profilePopupElement);
 }
 
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
-popupCloseButton.addEventListener('click', closeProfilePopup);
+profilePopupCloseButton.addEventListener('click', closePopup);
 
 //  Закрываем попап нажатием на дисплей
 profilePopupElement.addEventListener('mousedown', function (event) {
   if (event.target === event.currentTarget)
-    closeProfilePopup();
+    closePopup(profilePopupElement);
 })
 
 // Отправляем форму
