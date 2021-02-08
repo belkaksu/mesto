@@ -1,6 +1,5 @@
 const profilePopupOpenButton = document.querySelector('.profile__edit-button');
-const popupElement = document.querySelector('.popup');
-const PopupCloseButton = document.querySelector('.close-button');
+const popupCloseButton = document.querySelector('.close-button');
 const profilePopupElement = document.querySelector('.popup-profile')
 const profileFormElement = document.querySelector('.popup__container_profile_data');
 
@@ -61,10 +60,10 @@ function handleFormProfileSubmit(event) {
 
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
-PopupCloseButton.addEventListener('click', closeProfilePopup);
+popupCloseButton.addEventListener('click', closeProfilePopup);
 
 //  Закрываем попап нажатием на дисплей
-popupElement.addEventListener('mousedown', function (event) {
+profilePopupElement.addEventListener('mousedown', function (event) {
   if (event.target === event.currentTarget)
     closeProfilePopup();
 })
