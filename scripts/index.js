@@ -67,9 +67,10 @@ profilePopupCloseButton.addEventListener('click', function() {
 });
 
 //  Закрываем попап нажатием на дисплей
-profilePopupElement.addEventListener('mousedown', function (event) {
-    handleTargetClosePopup();
+profilePopupElement.addEventListener('mousedown', function(event) {
+    handleTargetClosePopup(event)
     closePopup(profilePopupElement);
+
 })
 
 // Отправляем форму
@@ -212,14 +213,11 @@ popupNewCardCloseButton.addEventListener('click', function() {
   closePopup(popupNewCardElement);
 });
 
-popupNewCardElement.addEventListener('mousedown', function (event) {
-  handleTargetClosePopup();
+popupNewCardElement.addEventListener('mousedown', function(event) {
+  handleTargetClosePopup(event);
   closePopup(popupNewCardElement);
 })
 
 
 
-function handleTargetClosePopup(event) {
-  return event.target === event.currentTarget;
-}
 
