@@ -125,6 +125,7 @@ function createNewCard(link, name) {
 
   const imageElement = cardElement.querySelector('.element__image');
   imageElement.src = link;
+  imageElement.alt = name;
   imageElement.addEventListener('click', function () {
     openImagePopup(link, name);
   });
