@@ -24,10 +24,13 @@ function closePopup(popup) {
   popup.classList.remove('popup_display_opened');
 }
 
-// универсальная функция закрытия попапа кликом на область все формы
+// универсальная функция закрытия попапа кликом на область вне формы
+
+// большое спасибо за ревью!
 
 function handleTargetClosePopup(event) {
-  return event.target === event.currentTarget;
+  if (event.target === event.currentTarget)
+  closePopup(event.target);
 }
 
 function fillProfilePopupForm() {
@@ -67,11 +70,8 @@ profilePopupCloseButton.addEventListener('click', function() {
 });
 
 //  Закрываем попап нажатием на дисплей
-profilePopupElement.addEventListener('mousedown', function(event) {
-    handleTargetClosePopup(event)
-    closePopup(profilePopupElement);
 
-})
+profilePopupElement.addEventListener('mousedown', handleTargetClosePopup)
 
 // Отправляем форму
 
@@ -213,11 +213,7 @@ popupNewCardCloseButton.addEventListener('click', function() {
   closePopup(popupNewCardElement);
 });
 
-popupNewCardElement.addEventListener('mousedown', function(event) {
-  handleTargetClosePopup(event);
-  closePopup(popupNewCardElement);
-})
-
+popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
 
 
 
