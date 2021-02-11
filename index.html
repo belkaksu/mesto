@@ -74,14 +74,19 @@
               type="text"
               class="popup__item popup__item_data_title"
               placeholder="ФИО или ник Пользователя"
-              required
               name="dataTitle"
+              required
+              minlength="2"
+              maxlength="40"
             />
             <input
               type="text"
               class="popup__item popup__item_data_subtitle"
               placeholder="Род деятельности"
               name="dataSubtitle"
+              required
+              minlength="2"
+              maxlength="200"
             />
 
             <button type="submit" class="popup__submit-button">
@@ -110,6 +115,8 @@
               placeholder="Название"
               required
               name="dataName"
+              minlength="2"
+              maxlength="30"
             />
 
             <input

@@ -13,3 +13,7 @@
 .popup__item:last-of-type {
   margin-bottom: 45px;
 }
+
+.popup__item:invalid {
+  border-bottom: 1px solid #FF0000;
+}
