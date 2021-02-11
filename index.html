@@ -73,6 +73,7 @@
 
             <input
               type="text"
+              id="user-name"
               class="popup__item popup__item_data_title"
               placeholder="ФИО или ник Пользователя"
               name="dataTitle"
@@ -80,8 +81,10 @@
               minlength="2"
               maxlength="40"
             />
+            <span class="user-name-error popup__item-error"></span>
             <input
               type="text"
+              id="user-job"
               class="popup__item popup__item_data_subtitle"
               placeholder="Род деятельности"
               name="dataSubtitle"
@@ -89,6 +92,7 @@
               minlength="2"
               maxlength="200"
             />
+            <span class="user-job-error popup__item-error"></span>
 
             <button type="submit" class="popup__submit-button">
               Сохранить
@@ -113,6 +117,7 @@
 
             <input
               type="text"
+              id="place-name"
               class="popup__item popup__item_data_name"
               placeholder="Название"
               required
@@ -120,15 +125,16 @@
               minlength="2"
               maxlength="30"
             />
-
+            <span class="place-name-error popup__item-error"></span>
             <input
               type="url"
+              id="place-url"
               class="popup__item popup__item_data_place"
               placeholder="Ссылка на картинку"
               name="dataPlace"
               required
             />
-
+            <span class="place-url-error popup__item-error"></span>
             <button type="submit" class="popup__submit-button">Создать</button>
           </form>
         </div>

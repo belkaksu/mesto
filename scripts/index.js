@@ -51,10 +51,9 @@ const openProfilePopup = function () {
   openPopup(profilePopupElement);
 }
 
-// Закрываем попап
-
 
 // Объявляем функцию, которая вставляет введенные данные в профиль пользователя
+
 function setProfileData() {
   profileNameElement.textContent = profileNameInput.value;
   profileJobElement.textContent = profileJobInput.value;
@@ -68,6 +67,20 @@ function handleFormProfileSubmit(event) {
   setProfileData();
   closePopup(profilePopupElement);
 }
+
+// Настраиваем валидацию
+
+
+
+
+
+
+
+
+
+
+
+
 
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
