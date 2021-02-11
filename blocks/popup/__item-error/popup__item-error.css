@@ -1,0 +1,13 @@
+.popup__item-error {
+  display: block;
+  color: #FF0000;
+  font-size: 12px;
+  box-sizing: border-box;
+  margin: 5px 0 13px;
+  visibility: hidden;
+}
+
+.popup__item-error:last-of-type {
+  margin-bottom: 31px;
+}
+

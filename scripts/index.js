@@ -6,8 +6,12 @@ const profileFormElement = document.querySelector('.popup__container_profile_dat
 const profileNameInput = document.querySelector('.popup__item_data_title');
 const profileJobInput = document.querySelector('.popup__item_data_subtitle');
 
-const profileNameElement = document.querySelector('.profile__title')
-const profileJobElement = document.querySelector('.profile__subtitle')
+const profileNameElement = document.querySelector('.profile__title');
+const profileJobElement = document.querySelector('.profile__subtitle');
+
+const profileNameError = profilePopupElement.querySelector(`.${profileNameInput.id}-error`);
+const profileJobError = profilePopupElement.querySelector(`.${profileJobInput.id}-error`);
+
 
 
 // Объявляем функцию, которая вставляет текстовое содержимое в поля Input
@@ -71,7 +75,9 @@ function handleFormProfileSubmit(event) {
 // Настраиваем валидацию
 
 
-
+function showProfileNameInputError(element) {
+  element.classList.add('popup__item_type_error')
+}
 
 
 
