@@ -176,6 +176,10 @@ imagePopupCloseButton.addEventListener('click', function() {
   closePopup(imagePopup);
 });
 
+document.addEventListener('keydown', function(event) {
+  handleKeyClosePopup(event, imagePopup);
+});
+
 
 render()
 
@@ -233,6 +237,10 @@ popupNewCardCloseButton.addEventListener('click', function() {
 });
 
 popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
+
+document.addEventListener('keydown', function(event) {
+  handleKeyClosePopup(event, popupNewCardElement);
+});
 
 
 
