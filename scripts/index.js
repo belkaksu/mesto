@@ -26,8 +26,6 @@ function closePopup(popup) {
 
 // универсальная функция закрытия попапа кликом на область вне формы
 
-// большое спасибо за ревью!
-
 function handleTargetClosePopup(event) {
   if (event.target === event.currentTarget)
   closePopup(event.target);
@@ -155,9 +153,14 @@ function render() {
   });
 }
 
+// закрытие попап нажатием на область вне фото
+
+imagePopup.addEventListener('mousedown', handleTargetClosePopup);
+
 imagePopupCloseButton.addEventListener('click', function() {
   closePopup(imagePopup);
 });
+
 
 render()
 
