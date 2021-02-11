@@ -31,6 +31,14 @@ function handleTargetClosePopup(event) {
   closePopup(event.target);
 }
 
+// Универсальная функция закрытия попапа нажатием на клавишу ESC
+
+function handleKeyClosePopup(event, popup) {
+  if (event.key === 'Escape')
+  closePopup(popup);
+}
+
+
 function fillProfilePopupForm() {
   profileNameInput.value = profileNameElement.textContent;
   profileJobInput.value = profileJobElement.textContent;
@@ -69,7 +77,14 @@ profilePopupCloseButton.addEventListener('click', function() {
 
 //  Закрываем попап нажатием на дисплей
 
-profilePopupElement.addEventListener('mousedown', handleTargetClosePopup)
+profilePopupElement.addEventListener('mousedown', handleTargetClosePopup);
+
+//  Закрытие попап нажатием на ESC
+
+document.addEventListener('keydown', function(event) {
+  handleKeyClosePopup(event, profilePopupElement);
+});
+
 
 // Отправляем форму
 
