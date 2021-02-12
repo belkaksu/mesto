@@ -32,6 +32,9 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_display_opened');
+  document.removeEventListener('keyup', function(event) {
+    handleKeyClosePopup(event, popup);
+  });
 }
 
 // универсальная функция закрытия попапа кликом на область вне формы
@@ -41,6 +44,29 @@ function handleTargetClosePopup(event) {
     closePopup(event.target);
 }
 
+// Универсальная функция очитки полей формы
+
+function cleanFormInput(formElement) {
+  formElement.reset();
+}
+
+
+// Универсальная форма очистки сообщений об ошибках
+
+function cleanErrorField(formElement) {
+ const errorList = Array.from(formElement.querySelectorAll('.popup__item-error'));
+ const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
+
+  errorList.forEach(function(errorElement) {
+    errorElement.textContent = "";
+  });
+
+  inputList.forEach(function(inputElement) {
+    inputElement.classList.remove('popup__item_type_error');
+  });
+
+
+};
 
 
 // Объявляем функцию, которая вставляет текстовое содержимое в поля Input
@@ -52,7 +78,8 @@ function fillProfilePopupForm() {
 }
 
 // Открываем попап и вставляем данные из профиля в поля Input
-const openProfilePopup = function () {
+function openProfilePopup() {
+  cleanErrorField(profileFormElement);
   fillProfilePopupForm();
   openPopup(profilePopupElement);
 
@@ -178,9 +205,6 @@ imagePopupCloseButton.addEventListener('click', function () {
   closePopup(imagePopup);
 });
 
-document.addEventListener('keydown', function (event) {
-  handleKeyClosePopup(event, imagePopup);
-});
 
 
 render()
@@ -212,10 +236,6 @@ function prependCardToCardsContainer(cardConteinerElement, link, name) {
 
 }
 
-function cleanNewCardForm() {
-  popupNewCardFormElement.reset();
-}
-
 
 function handleFormNewCardSubmit(event) {
   event.preventDefault();
@@ -223,16 +243,20 @@ function handleFormNewCardSubmit(event) {
   const name = newCardNameInput.value;
   prependCardToCardsContainer(cardsList, link, name);
   closePopup(popupNewCardElement);
-  cleanNewCardForm();
+
 
 }
 
+function openNewCardPopup() {
+  cleanErrorField(popupNewCardFormElement);
+  cleanFormInput(popupNewCardFormElement);
+  openPopup(popupNewCardElement);
+
+};
 
 popupNewCardFormElement.addEventListener('submit', handleFormNewCardSubmit);
 
-popupNewCardOpenButton.addEventListener('click', function () {
-  openPopup(popupNewCardElement);
-});
+popupNewCardOpenButton.addEventListener('click', openNewCardPopup);
 
 popupNewCardCloseButton.addEventListener('click', function () {
   closePopup(popupNewCardElement);
@@ -240,9 +264,6 @@ popupNewCardCloseButton.addEventListener('click', function () {
 
 popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
 
-document.addEventListener('keydown', function (event) {
-  handleKeyClosePopup(event, popupNewCardElement);
-});
 
 
 
@@ -254,121 +275,5 @@ document.addEventListener('keydown', function (event) {
 
 
 
-
-
-// Настраиваем валидацию
-
-// Универсальная функция, добавляющая текст ошибки и подсветку поля
-
-
-const formParameters = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__item',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__item-error_active'
-
-};
-
-
-
-
-
-function showInputError(formElement, inputElement, errorMessage, obj) {
-
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.add(obj.inputErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(obj.errorClass);
-};
-
- // Универсальная функция, скрывающая ошибку и подстветку поля
-
-
-function hideInputError(formElement, inputElement, obj) {
-
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.remove(obj.inputErrorClass);
-  errorElement.classList.remove(obj.errorClass);
-  errorElement.textContent = '';
-};
-
-
-// Универсальная функция проверки поля на валидность
-
-
-function isValid(formElement, inputElement, obj) {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, obj);
-  } else {
-    hideInputError(formElement, inputElement, obj);
-  }
-};
-
-// Проверка полей формы на валидность
-
-function hasInvalidInput(inputList) {
-  return inputList.some(function(inputElement) {
-    return !inputElement.validity.valid;
-  });
-};
-
-// Функция добавляющая или снимающая атрибут disabled в зависимости от валидности поля
-
-
-
-function toggleButtonState(inputList, buttonElement, obj) {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(obj.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
-  } else {
-    buttonElement.classList.remove(obj.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
-
-  }
-}
-
-
-// Универсальная функция, добавляющая обработчик событий всем полям ввода внути формы
-
-
-function setEventListeners(formElement, obj) {
-
-  const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
-  const buttonElement = formElement.querySelector(obj.submitButtonSelector);
-
-  toggleButtonState(inputList, buttonElement, obj);
-
-  inputList.forEach(function(inputElement) {
-    inputElement.addEventListener('input', function() {
-      isValid(formElement, inputElement, obj);
-      toggleButtonState(inputList, buttonElement, obj);
-
-    });
-
-  });
-};
-
-
-// Универсальная функция добавляющая обработчик всем формам на странице
-
-
-function enableValidation(obj) {
-  const formList = Array.from(document.querySelectorAll(obj.formSelector));
-
-  formList.forEach(function(formElement) {
-    formElement.addEventListener('submit', function(event) {
-      event.preventDefault();
-    });
-    setEventListeners(formElement, obj);
-  });
-};
-
-
-
-enableValidation(formParameters);
 
 
