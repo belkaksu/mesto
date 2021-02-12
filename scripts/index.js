@@ -9,8 +9,6 @@ const profileJobInput = document.querySelector('.popup__item_data_subtitle');
 const profileNameElement = document.querySelector('.profile__title');
 const profileJobElement = document.querySelector('.profile__subtitle');
 
-const profileNameError = profilePopupElement.querySelector(`.${profileNameInput.id}-error`);
-const profileJobError = profilePopupElement.querySelector(`.${profileJobInput.id}-error`);
 
 
 
@@ -32,14 +30,14 @@ function closePopup(popup) {
 
 function handleTargetClosePopup(event) {
   if (event.target === event.currentTarget)
-  closePopup(event.target);
+    closePopup(event.target);
 }
 
 // Универсальная функция закрытия попапа нажатием на клавишу ESC
 
 function handleKeyClosePopup(event, popup) {
   if (event.key === 'Escape')
-  closePopup(popup);
+    closePopup(popup);
 }
 
 
@@ -72,12 +70,108 @@ function handleFormProfileSubmit(event) {
   closePopup(profilePopupElement);
 }
 
-// Настраиваем валидацию
 
 
-function showProfileNameInputError(element) {
-  element.classList.add('popup__item_type_error')
-}
+
+
+
+
+
+// function showProfileNameInputError(element, errorMessage) {
+//   element.classList.add('popup__item_type_error');
+//   profileNameError.textContent = errorMessage;
+//   profileNameError.classList.add('popup__item-error_active');
+// };
+
+// function hideProfileNameInputError(element) {
+//   element.classList.remove('popup__item_type_error');
+//   profileNameError.classList.remove('popup__item-error_active');
+//   profileNameError.textContent = '';
+// };
+
+// function provileIsValid () {
+//   if (!profileNameInput.validity.valid) {
+//     showProfileNameInputError(profileNameInput, profileNameInput.validationMessage);
+//   } else {
+//     hideProfileNameInputError(profileNameInput);
+//   }
+// };
+
+// profileFormElement.addEventListener('submit', function(event) {
+//   event.preventDefault();
+// });
+
+
+// profileNameInput.addEventListener('input', provileIsValid);
+
+
+
+
+
+
+
+function showInputError(formElement, inputElement, errorMessage) {
+
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+  inputElement.classList.add('popup__item_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__item-error_active');
+};
+
+function hideInputError(formElement, inputElement) {
+
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+  inputElement.classList.remove('popup__item_type_error');
+  errorElement.classList.remove('popup__item-error_active');
+  errorElement.textContent = '';
+};
+
+function isValid(formElement, inputElement) {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
+  inputList.forEach(function(inputElement) {
+    inputElement.addEventListener('input', function() {
+      isValid(formElement, inputElement);
+    });
+  });
+};
+
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll('.popup__container'));
+
+  formList.forEach(function(formElement) {
+    formElement.addEventListener('submit', function(event) {
+      event.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -90,7 +184,7 @@ function showProfileNameInputError(element) {
 
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
-profilePopupCloseButton.addEventListener('click', function() {
+profilePopupCloseButton.addEventListener('click', function () {
   closePopup(profilePopupElement);
 });
 
@@ -100,7 +194,7 @@ profilePopupElement.addEventListener('mousedown', handleTargetClosePopup);
 
 //  Закрытие попап нажатием на ESC
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
   handleKeyClosePopup(event, profilePopupElement);
 });
 
@@ -191,11 +285,11 @@ function render() {
 
 imagePopup.addEventListener('mousedown', handleTargetClosePopup);
 
-imagePopupCloseButton.addEventListener('click', function() {
+imagePopupCloseButton.addEventListener('click', function () {
   closePopup(imagePopup);
 });
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
   handleKeyClosePopup(event, imagePopup);
 });
 
@@ -251,15 +345,78 @@ popupNewCardOpenButton.addEventListener('click', function () {
   openPopup(popupNewCardElement);
 });
 
-popupNewCardCloseButton.addEventListener('click', function() {
+popupNewCardCloseButton.addEventListener('click', function () {
   closePopup(popupNewCardElement);
 });
 
 popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
   handleKeyClosePopup(event, popupNewCardElement);
 });
 
 
 
+// // Настраиваем валидацию
+
+// // Универсальная функция, добавляющая текст ошибки и подсветку поля
+
+// function showInputError(formElement, inputElement, errorMessage) {
+
+//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+//   inputElement.classList.add('popup__item_type_error');
+//   errorElement.textContent = errorMessage;
+//   errorElement.classList.add('popup__item-error_active');
+// }
+
+// // Универсальная функция, скрывающая ошибку и подстветку поля
+
+// function hideInputError(formElement, inputElement) {
+
+//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+//   inputElement.classList.remove('popup__item_type_error');
+//   errorElement.textContent = '';
+//   errorElement.classList.remove('popup__item-error_active');
+// };
+
+// // Универсальная функция проверки поля на валидность
+
+// function isValid(formElement, inputElement) {
+//   if(!inputElement.validity.valid) {
+//     showInputError(formElement, inputElement, inputElement.validationMessage);
+//   } else {
+//     hideInputError(formElement, inputElement);
+//   };
+// };
+
+// // Универсальная функция, добавляющая обработчик событий всем полям ввода внути формы
+
+// function setEventListeners(formElement) {
+
+//   const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
+
+//   inputList.forEach(function(inputElement) {
+//     inputElement.addEventListener('link', function() {
+//       isValid(formElement, inputElement);
+//     });
+//   });
+// };
+
+
+
+// // Универсальная функция добавляющая обработчик всем формам на странице
+
+// function enableValidation() {
+//   const formList = Array.from(document.querySelectorAll('.popup__container'));
+
+//   formList.forEach(function(formElement) {
+//     formElement.addEventListener('submit', function(event) {
+//       event.preventDefault();
+//     });
+//     setEventListeners(formElement);
+//   });
+// };
+
+// enableValidation();
