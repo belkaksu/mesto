@@ -12,11 +12,21 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 
 
 
+// Универсальная функция закрытия попапа нажатием на клавишу ESC
+
+function handleKeyClosePopup(event, popup) {
+  if (event.key === 'Escape')
+    closePopup(popup);
+}
+
 // универсальная функция открытия попапа
 
 function openPopup(popup) {
   popup.classList.add('popup_display_opened');
-}
+  document.addEventListener('keyup', function(event) {
+    handleKeyClosePopup(event, popup);
+  });
+};
 
 // универсальная функция закрытия попапа
 
@@ -31,12 +41,7 @@ function handleTargetClosePopup(event) {
     closePopup(event.target);
 }
 
-// Универсальная функция закрытия попапа нажатием на клавишу ESC
 
-function handleKeyClosePopup(event, popup) {
-  if (event.key === 'Escape')
-    closePopup(popup);
-}
 
 // Объявляем функцию, которая вставляет текстовое содержимое в поля Input
 
@@ -50,6 +55,7 @@ function fillProfilePopupForm() {
 const openProfilePopup = function () {
   fillProfilePopupForm();
   openPopup(profilePopupElement);
+
 }
 
 
@@ -80,12 +86,6 @@ profilePopupCloseButton.addEventListener('click', function () {
 //  Закрываем попап нажатием на дисплей
 
 profilePopupElement.addEventListener('mousedown', handleTargetClosePopup);
-
-//  Закрытие попап нажатием на ESC
-
-document.addEventListener('keydown', function (event) {
-  handleKeyClosePopup(event, profilePopupElement);
-});
 
 
 // Отправляем форму
