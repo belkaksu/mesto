@@ -14,7 +14,9 @@
   .popup__submit-button {
     font-size: 16px;
     padding: 13px 0;
+  }
 }
+
 
 @media screen and (min-width: 1024px) {
   .popup__submit-button {
@@ -29,7 +31,3 @@
   cursor: pointer;
 }
 
-.popup__submit-button:disabled {
-  background-color: #E5E5E5;
-  cursor: default;
-}
