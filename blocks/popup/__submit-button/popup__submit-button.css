@@ -31,3 +31,7 @@
   cursor: pointer;
 }
 
+.popup__submit-button:disabled {
+  background-color: #E5E5E5;
+  cursor: default;
+}

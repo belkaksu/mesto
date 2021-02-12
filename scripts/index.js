@@ -12,8 +12,6 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 
 
 
-// Объявляем функцию, которая вставляет текстовое содержимое в поля Input
-
 // универсальная функция открытия попапа
 
 function openPopup(popup) {
@@ -40,6 +38,7 @@ function handleKeyClosePopup(event, popup) {
     closePopup(popup);
 }
 
+// Объявляем функцию, которая вставляет текстовое содержимое в поля Input
 
 function fillProfilePopupForm() {
   profileNameInput.value = profileNameElement.textContent;
@@ -69,116 +68,6 @@ function handleFormProfileSubmit(event) {
   setProfileData();
   closePopup(profilePopupElement);
 }
-
-
-
-
-
-
-
-
-// function showProfileNameInputError(element, errorMessage) {
-//   element.classList.add('popup__item_type_error');
-//   profileNameError.textContent = errorMessage;
-//   profileNameError.classList.add('popup__item-error_active');
-// };
-
-// function hideProfileNameInputError(element) {
-//   element.classList.remove('popup__item_type_error');
-//   profileNameError.classList.remove('popup__item-error_active');
-//   profileNameError.textContent = '';
-// };
-
-// function provileIsValid () {
-//   if (!profileNameInput.validity.valid) {
-//     showProfileNameInputError(profileNameInput, profileNameInput.validationMessage);
-//   } else {
-//     hideProfileNameInputError(profileNameInput);
-//   }
-// };
-
-// profileFormElement.addEventListener('submit', function(event) {
-//   event.preventDefault();
-// });
-
-
-// profileNameInput.addEventListener('input', provileIsValid);
-
-
-
-
-
-
-
-function showInputError(formElement, inputElement, errorMessage) {
-
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.add('popup__item_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__item-error_active');
-};
-
-function hideInputError(formElement, inputElement) {
-
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.remove('popup__item_type_error');
-  errorElement.classList.remove('popup__item-error_active');
-  errorElement.textContent = '';
-};
-
-function isValid(formElement, inputElement) {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-
-function setEventListeners(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
-  inputList.forEach(function(inputElement) {
-    inputElement.addEventListener('input', function() {
-      isValid(formElement, inputElement);
-    });
-  });
-};
-
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__container'));
-
-  formList.forEach(function(formElement) {
-    formElement.addEventListener('submit', function(event) {
-      event.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
-
-enableValidation();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -357,66 +246,112 @@ document.addEventListener('keydown', function (event) {
 
 
 
-// // Настраиваем валидацию
-
-// // Универсальная функция, добавляющая текст ошибки и подсветку поля
-
-// function showInputError(formElement, inputElement, errorMessage) {
-
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-//   inputElement.classList.add('popup__item_type_error');
-//   errorElement.textContent = errorMessage;
-//   errorElement.classList.add('popup__item-error_active');
-// }
-
-// // Универсальная функция, скрывающая ошибку и подстветку поля
-
-// function hideInputError(formElement, inputElement) {
-
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-//   inputElement.classList.remove('popup__item_type_error');
-//   errorElement.textContent = '';
-//   errorElement.classList.remove('popup__item-error_active');
-// };
-
-// // Универсальная функция проверки поля на валидность
-
-// function isValid(formElement, inputElement) {
-//   if(!inputElement.validity.valid) {
-//     showInputError(formElement, inputElement, inputElement.validationMessage);
-//   } else {
-//     hideInputError(formElement, inputElement);
-//   };
-// };
-
-// // Универсальная функция, добавляющая обработчик событий всем полям ввода внути формы
-
-// function setEventListeners(formElement) {
-
-//   const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
-
-//   inputList.forEach(function(inputElement) {
-//     inputElement.addEventListener('link', function() {
-//       isValid(formElement, inputElement);
-//     });
-//   });
-// };
 
 
 
-// // Универсальная функция добавляющая обработчик всем формам на странице
 
-// function enableValidation() {
-//   const formList = Array.from(document.querySelectorAll('.popup__container'));
 
-//   formList.forEach(function(formElement) {
-//     formElement.addEventListener('submit', function(event) {
-//       event.preventDefault();
-//     });
-//     setEventListeners(formElement);
-//   });
-// };
 
-// enableValidation();
+
+
+
+
+// Настраиваем валидацию
+
+// Универсальная функция, добавляющая текст ошибки и подсветку поля
+
+
+function showInputError(formElement, inputElement, errorMessage) {
+
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+  inputElement.classList.add('popup__item_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__item-error_active');
+};
+
+ // Универсальная функция, скрывающая ошибку и подстветку поля
+
+
+function hideInputError(formElement, inputElement) {
+
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+  inputElement.classList.remove('popup__item_type_error');
+  errorElement.classList.remove('popup__item-error_active');
+  errorElement.textContent = '';
+};
+
+
+// Универсальная функция проверки поля на валидность
+
+
+function isValid(formElement, inputElement) {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+// Проверка полей формы на валидность
+
+function hasInvalidInput(inputList) {
+  return inputList.some(function(inputElement) {
+    return !inputElement.validity.valid;
+  });
+};
+
+// Функция добавляющая или снимающая атрибут disabled в зависимости от валидности поля
+
+
+
+function toggleButtonState(inputList, buttonElement) {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.setAttribute('disabled', true);
+  } else {
+    buttonElement.removeAttribute('disabled');
+  }
+}
+
+
+// Универсальная функция, добавляющая обработчик событий всем полям ввода внути формы
+
+
+function setEventListeners(formElement) {
+
+  const inputList = Array.from(formElement.querySelectorAll('.popup__item'));
+  const buttonElement = formElement.querySelector('.popup__submit-button');
+
+  toggleButtonState(inputList, buttonElement);
+
+  inputList.forEach(function(inputElement) {
+    inputElement.addEventListener('input', function() {
+      isValid(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+
+    });
+
+  });
+};
+
+
+// Универсальная функция добавляющая обработчик всем формам на странице
+
+
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll('.popup__container'));
+
+  formList.forEach(function(formElement) {
+    formElement.addEventListener('submit', function(event) {
+      event.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation();
+
+
+
+
