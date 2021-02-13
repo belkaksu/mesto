@@ -4,47 +4,58 @@ const formParameters = {
   formSelector: '.popup__container',
   inputSelector: '.popup__item',
   submitButtonSelector: '.popup__submit-button',
+  spanSelector: '.popup__item-error',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__item-error_active'
-
+  errorClass: 'popup__item-error_active',
 };
 
-function showInputError(formElement, inputElement, errorMessage, obj) {
+// Универсальная форма очистки сообщений об ошибках
+
+function cleanFormErrorFields(formElement, formParams) {
+  const errorList = Array.from(formElement.querySelectorAll(formParams.spanSelector));
+  const inputList = Array.from(formElement.querySelectorAll(formParams.inputSelector));
+
+  inputList.forEach(function(inputElement) {
+     inputElement.classList.remove(formParams.inputErrorClass);
+   });
+
+   errorList.forEach(function(errorElement) {
+    errorElement.textContent = "";
+  });
+ };
+
+function showInputError(formElement, inputElement, errorMessage, formParams) {
 
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-  inputElement.classList.add(obj.inputErrorClass);
+  inputElement.classList.add(formParams.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(obj.errorClass);
+  errorElement.classList.add(formParams.errorClass);
 };
 
  // Универсальная функция, скрывающая ошибку и подстветку поля
 
-
-function hideInputError(formElement, inputElement, obj) {
+function hideInputError(formElement, inputElement, formParams) {
 
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
-  inputElement.classList.remove(obj.inputErrorClass);
-  errorElement.classList.remove(obj.errorClass);
+  inputElement.classList.remove(formParams.inputErrorClass);
+  errorElement.classList.remove(formParams.errorClass);
   errorElement.textContent = '';
 };
 
-
 // Универсальная функция проверки поля на валидность
 
-
-function isValid(formElement, inputElement, obj) {
+function isValid(formElement, inputElement, formParams) {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, obj);
+    showInputError(formElement, inputElement, inputElement.validationMessage, formParams);
   } else {
-    hideInputError(formElement, inputElement, obj);
+    hideInputError(formElement, inputElement, formParams);
   }
 };
 
 // Проверка полей формы на валидность
-
 
 function hasInvalidInput(inputList) {
   return inputList.some(function(inputElement) {
@@ -54,56 +65,45 @@ function hasInvalidInput(inputList) {
 
 // Функция добавляющая или снимающая атрибут disabled в зависимости от валидности поля
 
-
-
-function toggleButtonState(inputList, buttonElement, obj) {
+function toggleButtonState(inputList, buttonElement, formParams) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(obj.inactiveButtonClass);
+    buttonElement.classList.add(formParams.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   } else {
-    buttonElement.classList.remove(obj.inactiveButtonClass);
+    buttonElement.classList.remove(formParams.inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
-
   }
 }
 
-
 // Универсальная функция, добавляющая обработчик событий всем полям ввода внути формы
 
+function setEventListeners(formElement, formParams) {
 
-function setEventListeners(formElement, obj) {
+  const inputList = Array.from(formElement.querySelectorAll(formParams.inputSelector));
+  const buttonElement = formElement.querySelector(formParams.submitButtonSelector);
 
-  const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
-  const buttonElement = formElement.querySelector(obj.submitButtonSelector);
-
-  toggleButtonState(inputList, buttonElement, obj);
+  toggleButtonState(inputList, buttonElement, formParams);
 
   inputList.forEach(function(inputElement) {
     inputElement.addEventListener('input', function() {
-      isValid(formElement, inputElement, obj);
-      toggleButtonState(inputList, buttonElement, obj);
-
+      isValid(formElement, inputElement, formParams);
+      toggleButtonState(inputList, buttonElement, formParams);
     });
-
   });
 };
 
-
 // Универсальная функция добавляющая обработчик всем формам на странице
 
-
-function enableValidation(obj) {
-  const formList = Array.from(document.querySelectorAll(obj.formSelector));
+function enableValidation(formParams) {
+  const formList = Array.from(document.querySelectorAll(formParams.formSelector));
 
   formList.forEach(function(formElement) {
     formElement.addEventListener('submit', function(event) {
       event.preventDefault();
     });
-    setEventListeners(formElement, obj);
+    setEventListeners(formElement, formParams);
   });
 };
-
-
 
 enableValidation(formParameters);
 
