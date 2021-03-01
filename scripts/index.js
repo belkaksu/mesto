@@ -30,6 +30,7 @@ const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_p
 const templateContainer = document.querySelector('#cards__template').content;
 const cardsList = document.querySelector('.cards__items');
 
+
 // Универсальные функции
 
 // Универсальная функция закрытия попапа нажатием на клавишу ESC
@@ -124,6 +125,23 @@ function openImagePopup(link, name) {
   imagePopupTextElement.textContent = name;
   imagePopupImageElement.alt = name;
 }
+
+
+class Card {
+  constructor(link, name) {
+    this._link = link;
+    this._name = name;
+  }
+  _getTemplate() {
+    const cardElement = document.querySelector('#cards__template').content.querySelector('.element').cloneNode(true);
+    return cardElement
+  }
+ 
+}
+
+const card = new Card()
+
+
 
 // действия с template
 
