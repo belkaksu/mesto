@@ -10,11 +10,15 @@ const formParameters = {
   errorClass: 'popup__item-error_active',
 };
 
-// Универсальная форма очистки сообщений об ошибках
+// Универсальная форма очистки сообщений об ошибках и блокировки кнопки перед каждым открытием попап
 
 function cleanFormErrorFields(formElement, formParams) {
   const errorList = Array.from(formElement.querySelectorAll(formParams.spanSelector));
   const inputList = Array.from(formElement.querySelectorAll(formParams.inputSelector));
+  const buttonElement = formElement.querySelector(formParameters.submitButtonSelector);
+
+  buttonElement.classList.add(formParams.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
 
   inputList.forEach(function(inputElement) {
      inputElement.classList.remove(formParams.inputErrorClass);
