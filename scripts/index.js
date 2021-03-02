@@ -110,11 +110,7 @@ function handleDelete(event) {
   event.target.closest('.element').remove();
 }
 
-// функуция, проставляющая лайки
 
-function handleLike(event) {
-  event.target.classList.toggle('element__icon_active');
-}
 
 // открытие popup-image
 
@@ -127,61 +123,99 @@ function openImagePopup(link, name) {
 }
 
 
+
 class Card {
-  constructor(link, name) {
-    this._link = link;
-    this._name = name;
+  constructor(data, cardSelector) {
+    this._link = data.link;
+    this._name = data.name;
+    this._cardSelector = cardSelector;
   }
   _getTemplate() {
-    const cardElement = document.querySelector('#cards__template').content.querySelector('.element').cloneNode(true);
-    return cardElement
+    const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
+    return cardElement;
   }
- 
+
+  generateCard(link, name) {
+    this._element = this._getTemplate();
+    this._setEventListeners();
+
+    const _imageElement = this._element.querySelector('.element__image');
+    _imageElement.src = this._link;
+    _imageElement.alt = this._name;
+    this._element.querySelector('.element__title').textContent = this._name;
+
+    return this._element;
+  }
+
+  _setEventListeners() {
+    this._element.querySelector('.element__icon').addEventListener('click', (event) => {
+      this._handleLike(event);
+    });
+    this._element.querySelector('.element__delete-button').addEventListener('click', (event) => {
+      this._handleDelete(event);
+    });
+  }
+
+  _handleLike(event) {
+    event.target.classList.toggle('element__icon_active');
+  }
+
+  _handleDelete(event) {
+    event.target.closest('.element').remove();
+  }
+
 }
 
-const card = new Card()
+// Обходим массив и добавляем карточки на страницу
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '#cards__template');
+  const cardElement = card.generateCard();
+  cardsList.append(cardElement);
+
+});
 
 
 
-// действия с template
+// // действия с template
 
-function createNewCard(link, name) {
-  const cardElement = templateContainer.cloneNode(true);
-  const imageElement = cardElement.querySelector('.element__image');
-  imageElement.src = link;
-  imageElement.alt = name;
-  imageElement.addEventListener('click', function () {
-    openImagePopup(link, name);
-  });
+// function createNewCard(link, name) {
+//   const cardElement = templateContainer.cloneNode(true);
+//   const imageElement = cardElement.querySelector('.element__image');
+//   imageElement.src = link;
+//   imageElement.alt = name;
+//   imageElement.addEventListener('click', function () {
+//     openImagePopup(link, name);
+//   });
 
-  cardElement.querySelector('.element__title').textContent = name;
-  cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
-  cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
-  return cardElement;
-}
+//   cardElement.querySelector('.element__title').textContent = name;
+//   cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
+//   cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
+//   return cardElement;
+// }
 
-// Добавляем новую карточку на страницу
+// // Добавляем новую карточку на страницу
 
-function addCardToList(cardConteinerElement, link, name) {
-  const cardElement = createNewCard(link, name);
-  cardConteinerElement.append(cardElement);
-}
+// function addCardToList(cardConteinerElement, link, name) {
+//   const cardElement = createNewCard(link, name);
+//   cardConteinerElement.append(cardElement);
+// }
 
-// Действия с массивом initialCards
+// // Действия с массивом initialCards
 
-function renderInitialCards() {
-  initialCards.forEach(function (item) {
-    addCardToList(cardsList, item.link, item.name);
-  });
-}
+// function renderInitialCards() {
+//   initialCards.forEach(function (item) {
+//     addCardToList(cardsList, item.link, item.name);
+//   });
+// }
 
-// вставляем вводимые данные в поля input
+// // вставляем вводимые данные в поля input
 
-function prependCardToCardsContainer(cardConteinerElement, link, name) {
+// function prependCardToCardsContainer(cardConteinerElement, link, name) {
 
-  const newCardElement = createNewCard(link, name);
-  cardConteinerElement.prepend(newCardElement);
-}
+//   const newCardElement = createNewCard(link, name);
+//   cardConteinerElement.prepend(newCardElement);
+// }
 
 // функционал отправки формы NewCard
 
@@ -229,7 +263,7 @@ imagePopupCloseButton.addEventListener('click', function () {
   closePopup(imagePopup);
 });
 
-renderInitialCards()
+// renderInitialCards()
 
 // newCardPopup
 
