@@ -16,7 +16,7 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 const imagePopup = document.querySelector('.popup-image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
 const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
-const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle')
+const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
 
 // Переменные newCardPopup
 
@@ -44,7 +44,7 @@ function handleKeyClosePopup(event, popup) {
 
 function openPopup(popup) {
   popup.classList.add('popup_display_opened');
-  document.addEventListener('keyup', function(event) {
+  document.addEventListener('keyup', (event) => {
     handleKeyClosePopup(event, popup);
   });
 };
@@ -53,7 +53,7 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_display_opened');
-  document.removeEventListener('keyup', function(event) {
+  document.removeEventListener('keyup', (event) => {
     handleKeyClosePopup(event, popup);
   });
 }
@@ -106,23 +106,28 @@ function handleFormProfileSubmit(event) {
 
 // удаление карточки
 
-function handleDelete(event) {
-  event.target.closest('.element').remove();
-}
+// function handleDelete(event) {
+//   event.target.closest('.element').remove();
+// }
 
 
 
 // открытие popup-image
 
-function openImagePopup(link, name) {
+// function openImagePopup(link, name) {
 
-  openPopup(imagePopup);
-  imagePopupImageElement.src = link;
-  imagePopupTextElement.textContent = name;
-  imagePopupImageElement.alt = name;
-}
+//   openPopup(imagePopup);
+//   imagePopupImageElement.src = link;
+//   imagePopupTextElement.textContent = name;
+//   imagePopupImageElement.alt = name;
+// }
 
+//  не забыть удалить
 
+// const imagePopup = document.querySelector('.popup-image');
+// const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
+// const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
+// const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
 
 class Card {
   constructor(data, cardSelector) {
@@ -130,6 +135,7 @@ class Card {
     this._name = data.name;
     this._cardSelector = cardSelector;
   }
+
   _getTemplate() {
     const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
     return cardElement;
@@ -154,6 +160,15 @@ class Card {
     this._element.querySelector('.element__delete-button').addEventListener('click', (event) => {
       this._handleDelete(event);
     });
+    this._element.addEventListener('click', () => {
+      this._handleOpenPopup();
+    });
+    imagePopupCloseButton.addEventListener('click', () => {
+      this._handleClosePopup();
+    })
+    imagePopup.addEventListener('mousedown', (event) => {
+      this._handleTargetClosePopup(event);
+    })
   }
 
   _handleLike(event) {
@@ -163,7 +178,20 @@ class Card {
   _handleDelete(event) {
     event.target.closest('.element').remove();
   }
+  _handleOpenPopup() {
+    openPopup(imagePopup);
+    imagePopupImageElement.src = this._link;
+    imagePopupTextElement.textContent = this._name;
+    imagePopupImageElement.alt = this._name;
+  }
 
+  _handleClosePopup() {
+    closePopup(imagePopup);
+  }
+
+  _handleTargetClosePopup(event) {
+    handleTargetClosePopup(event);
+  }
 }
 
 // Обходим массив и добавляем карточки на страницу
@@ -174,6 +202,8 @@ initialCards.forEach((item) => {
   cardsList.append(cardElement);
 
 });
+
+
 
 
 
@@ -257,11 +287,11 @@ profileFormElement.addEventListener('submit', handleFormProfileSubmit);
 
 // закрытие попап нажатием на область вне фото
 
-imagePopup.addEventListener('mousedown', handleTargetClosePopup);
+// imagePopup.addEventListener('mousedown', handleTargetClosePopup);
 
-imagePopupCloseButton.addEventListener('click', function () {
-  closePopup(imagePopup);
-});
+// imagePopupCloseButton.addEventListener('click', function () {
+//   closePopup(imagePopup);
+// });
 
 // renderInitialCards()
 
