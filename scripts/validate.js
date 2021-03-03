@@ -22,9 +22,33 @@ class FormValidator {
     this._errorClass = objSelector.errorClass;
 
     this._currentForm = currentForm;
-
-
   }
+  _showInputError(formElement, inputElement, errorMessage) {
+
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+    inputElement.classList.add(this._inputErrorClass);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(this._errorClass);
+  }
+
+  _hideInputError(formElement, inputElement) {
+
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+    inputElement.classList.remove(this._inputErrorClass);
+    errorElement.classList.remove(this._errorClass);
+    errorElement.textContent = '';
+  }
+
+  _isValid(formElement, inputElement) {
+    if (!inputElement.validity.valid) {
+      showInputError(formElement, inputElement, inputElement.validationMessage);
+    } else {
+      hideInputError(formElement, inputElement);
+    }
+  };
+
 
 }
 
