@@ -1,4 +1,12 @@
-class Card {
+import { openPopup, closePopup, handleTargetClosePopup } from './index.js'
+
+const imagePopup = document.querySelector('.popup-image');
+
+const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
+const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
+const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
+
+export class Card {
   constructor(data, cardSelector) {
     this._link = data.link;
     this._name = data.name;

@@ -1,6 +1,5 @@
-// Настраиваем валидацию
 
-const formParameters = {
+export const formParameters = {
   formSelector: '.popup__container',
   inputSelector: '.popup__item',
   submitButtonSelector: '.popup__submit-button',
@@ -10,7 +9,7 @@ const formParameters = {
   errorClass: 'popup__item-error_active',
 };
 
-class FormValidator {
+export class FormValidator {
 
   constructor(objSelector, currentForm) {
     this._formSelector = objSelector.formSelector;
@@ -22,6 +21,7 @@ class FormValidator {
     this._errorClass = objSelector.errorClass;
 
     this._currentForm = currentForm;
+    // this.enableValidation();
   }
   _showInputError(formElement, inputElement, errorMessage) {
 
@@ -110,7 +110,7 @@ class FormValidator {
 
 }
 
-const formValidator = new FormValidator(formParameters);
+
 
 
 
