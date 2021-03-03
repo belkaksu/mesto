@@ -10,6 +10,32 @@ const formParameters = {
   errorClass: 'popup__item-error_active',
 };
 
+class FormValidator {
+
+  constructor(objSelector, currentForm) {
+    this._formSelector = objSelector.formSelector;
+    this._inputSelector = objSelector.inputSelector;
+    this._submitButtonSelector = objSelector.submitButtonSelector;
+    this._spanSelector = objSelector.spanSelector;
+    this._inactiveButtonClass = objSelector.inactiveButtonClass;
+    this._inputErrorClass = objSelector.inputErrorClass;
+    this._errorClass = objSelector.errorClass;
+
+    this._currentForm = currentForm;
+
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
 // Универсальная форма очистки сообщений об ошибках и блокировки кнопки перед каждым открытием попап
 
 function cleanFormErrorFields(formElement, formParams) {

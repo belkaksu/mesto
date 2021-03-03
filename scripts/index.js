@@ -129,6 +129,10 @@ function handleFormProfileSubmit(event) {
 // const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
 // const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
 
+
+
+
+
 class Card {
   constructor(data, cardSelector) {
     this._link = data.link;
@@ -160,7 +164,7 @@ class Card {
     this._element.querySelector('.element__delete-button').addEventListener('click', (event) => {
       this._handleDelete(event);
     });
-    this._element.addEventListener('click', () => {
+    this._element.querySelector('.element__image').addEventListener('click', () => {
       this._handleOpenPopup();
     });
     imagePopupCloseButton.addEventListener('click', () => {
@@ -194,6 +198,7 @@ class Card {
   }
 }
 
+
 // Обходим массив и добавляем карточки на страницу
 
 initialCards.forEach((item) => {
@@ -202,50 +207,6 @@ initialCards.forEach((item) => {
   cardsList.append(cardElement);
 
 });
-
-
-
-
-
-// // действия с template
-
-// function createNewCard(link, name) {
-//   const cardElement = templateContainer.cloneNode(true);
-//   const imageElement = cardElement.querySelector('.element__image');
-//   imageElement.src = link;
-//   imageElement.alt = name;
-//   imageElement.addEventListener('click', function () {
-//     openImagePopup(link, name);
-//   });
-
-//   cardElement.querySelector('.element__title').textContent = name;
-//   cardElement.querySelector('.element__delete-button').addEventListener('click', handleDelete);
-//   cardElement.querySelector('.element__icon').addEventListener('click', handleLike);
-//   return cardElement;
-// }
-
-// // Добавляем новую карточку на страницу
-
-// function addCardToList(cardConteinerElement, link, name) {
-//   const cardElement = createNewCard(link, name);
-//   cardConteinerElement.append(cardElement);
-// }
-
-// // Действия с массивом initialCards
-
-// function renderInitialCards() {
-//   initialCards.forEach(function (item) {
-//     addCardToList(cardsList, item.link, item.name);
-//   });
-// }
-
-// // вставляем вводимые данные в поля input
-
-// function prependCardToCardsContainer(cardConteinerElement, link, name) {
-
-//   const newCardElement = createNewCard(link, name);
-//   cardConteinerElement.prepend(newCardElement);
-// }
 
 // функционал отправки формы NewCard
 
