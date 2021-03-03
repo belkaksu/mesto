@@ -82,7 +82,7 @@ function fillProfilePopupForm() {
 
 // Открываем попап и вставляем данные из профиля в поля Input
 function openProfilePopup() {
-  cleanFormErrorFields(profileFormElement, formParameters);
+  this.cleanFormErrorFields(profileFormElement);
   fillProfilePopupForm();
   openPopup(profilePopupElement);
 }
@@ -221,7 +221,7 @@ function handleFormNewCardSubmit(event) {
 // Открытие newCardPopup
 
 function openNewCardPopup() {
-  cleanFormErrorFields(popupNewCardFormElement, formParameters);
+  this.cleanFormErrorFields(popupNewCardFormElement);
   cleanFormInput(popupNewCardFormElement);
   openPopup(popupNewCardElement);
 };
