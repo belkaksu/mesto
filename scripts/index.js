@@ -103,6 +103,7 @@ function handleFormProfileSubmit(event) {
 }
 
 // Обходим массив и добавляем карточки на страницу
+
 function renderInitialCards() {}
 initialCards.forEach((item) => {
   const card = new Card(item, '#cards__template');
@@ -112,10 +113,10 @@ initialCards.forEach((item) => {
 });
 
 function prependCardToCardsContainer(cardConteinerElement, card) {
+  
   const newCardElement = card.generateCard();
   cardConteinerElement.prepend(newCardElement);
 }
-
 
 // функционал отправки формы NewCard
 
@@ -167,7 +168,7 @@ popupNewCardCloseButton.addEventListener('click', function () {
 popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
 
 
-// Валидация форм 
+// Валидация форм
 
 formValidatorProfileForm.enableValidation();
 formValidatorNewCardForm.enableValidation();

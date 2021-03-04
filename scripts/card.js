@@ -13,10 +13,14 @@ export class Card {
     this._cardSelector = cardSelector;
   }
 
+  // Копируем элемент карточки
+
   _getTemplate() {
     const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
     return cardElement;
   }
+
+  // Генерируем карточку
 
   generateCard(link, name) {
     this._element = this._getTemplate();
@@ -48,13 +52,19 @@ export class Card {
     })
   }
 
+  // Ставим лайк
+
   _handleLike(event) {
     event.target.classList.toggle('element__icon_active');
   }
 
+  // Удаляем карточку
+
   _handleDelete(event) {
     event.target.closest('.element').remove();
   }
+
+  
   _handleOpenPopup() {
     openPopup(imagePopup);
     imagePopupImageElement.src = this._link;

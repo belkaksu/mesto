@@ -23,6 +23,9 @@ export class FormValidator {
     this._currentForm = currentForm;
     // this.enableValidation();
   }
+
+  // Показываем сообщение об ошибке
+
   _showInputError(formElement, inputElement, errorMessage) {
 
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -31,6 +34,8 @@ export class FormValidator {
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
   }
+
+  // Скрываем сообщение об ошибке
 
   _hideInputError(formElement, inputElement) {
 
@@ -41,6 +46,8 @@ export class FormValidator {
     errorElement.textContent = '';
   }
 
+  // Проверяем поле формы на валидность
+
   _isValid(formElement, inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(formElement, inputElement, inputElement.validationMessage);
@@ -49,11 +56,15 @@ export class FormValidator {
     }
   };
 
+  //Проверяем все поля на валидность
+
   _hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   };
+
+  // Состояние кнопки "отправить", в зависимости от валидности полей
 
   _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
@@ -80,6 +91,8 @@ export class FormValidator {
     });
   };
 
+  // Функция очистки полей и сообщений об ошибках. Сделала ее публичной, так как она вызывается при открытии попап
+
   cleanFormErrorFields(formElement) {
     const errorList = Array.from(formElement.querySelectorAll(this._spanSelector));
     const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
@@ -97,6 +110,8 @@ export class FormValidator {
     });
    };
 
+  //  Проверяет на валидность все формы
+
   enableValidation() {
     const formList = Array.from(document.querySelectorAll(this._formSelector));
 
@@ -107,7 +122,6 @@ export class FormValidator {
       this._setEventListeners(formElement);
     });
   };
-
 }
 
 
@@ -115,110 +129,5 @@ export class FormValidator {
 
 
 
-
-
-
-
-
-  // // Универсальная форма очистки сообщений об ошибках и блокировки кнопки перед каждым открытием попап
-
-  // function cleanFormErrorFields(formElement, formParams) {
-  //   const errorList = Array.from(formElement.querySelectorAll(formParams.spanSelector));
-  //   const inputList = Array.from(formElement.querySelectorAll(formParams.inputSelector));
-  //   const buttonElement = formElement.querySelector(formParameters.submitButtonSelector);
-
-  //   buttonElement.classList.add(formParams.inactiveButtonClass);
-  //   buttonElement.setAttribute('disabled', true);
-
-  //   inputList.forEach(function(inputElement) {
-  //      inputElement.classList.remove(formParams.inputErrorClass);
-  //    });
-
-  //    errorList.forEach(function(errorElement) {
-  //     errorElement.textContent = "";
-  //   });
-  //  };
-
-  // function showInputError(formElement, inputElement, errorMessage, formParams) {
-
-  //   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  //   inputElement.classList.add(formParams.inputErrorClass);
-  //   errorElement.textContent = errorMessage;
-  //   errorElement.classList.add(formParams.errorClass);
-  // };
-
-  //  // Универсальная функция, скрывающая ошибку и подстветку поля
-
-  // function hideInputError(formElement, inputElement, formParams) {
-
-  //   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  //   inputElement.classList.remove(formParams.inputErrorClass);
-  //   errorElement.classList.remove(formParams.errorClass);
-  //   errorElement.textContent = '';
-  // };
-
-  // // Универсальная функция проверки поля на валидность
-
-  // function isValid(formElement, inputElement, formParams) {
-  //   if (!inputElement.validity.valid) {
-  //     showInputError(formElement, inputElement, inputElement.validationMessage, formParams);
-  //   } else {
-  //     hideInputError(formElement, inputElement, formParams);
-  //   }
-  // };
-
-  // // Проверка полей формы на валидность
-
-  // function hasInvalidInput(inputList) {
-  //   return inputList.some(function(inputElement) {
-  //     return !inputElement.validity.valid;
-  //   });
-  // };
-
-  // // Функция добавляющая или снимающая атрибут disabled в зависимости от валидности поля
-
-  // function toggleButtonState(inputList, buttonElement, formParams) {
-  //   if (hasInvalidInput(inputList)) {
-  //     buttonElement.classList.add(formParams.inactiveButtonClass);
-  //     buttonElement.setAttribute('disabled', true);
-  //   } else {
-  //     buttonElement.classList.remove(formParams.inactiveButtonClass);
-  //     buttonElement.removeAttribute('disabled');
-  //   }
-  // }
-
-  // // Универсальная функция, добавляющая обработчик событий всем полям ввода внути формы
-
-  // function setEventListeners(formElement, formParams) {
-
-  //   const inputList = Array.from(formElement.querySelectorAll(formParams.inputSelector));
-  //   const buttonElement = formElement.querySelector(formParams.submitButtonSelector);
-
-  //   toggleButtonState(inputList, buttonElement, formParams);
-
-  //   inputList.forEach(function(inputElement) {
-  //     inputElement.addEventListener('input', function() {
-  //       isValid(formElement, inputElement, formParams);
-  //       toggleButtonState(inputList, buttonElement, formParams);
-  //     });
-  //   });
-  // };
-
-  // // Универсальная функция добавляющая обработчик всем формам на странице
-
-  // function enableValidation(formParams) {
-  //   const formList = Array.from(document.querySelectorAll(formParams.formSelector));
-
-  //   formList.forEach(function(formElement) {
-  //     formElement.addEventListener('submit', function(event) {
-  //       event.preventDefault();
-  //     });
-  //     setEventListeners(formElement, formParams);
-  //   });
-  // };
-
-  // enableValidation(formParameters);
 
 
