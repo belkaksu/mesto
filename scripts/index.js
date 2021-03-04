@@ -2,8 +2,6 @@ import { formParameters, FormValidator } from './validate.js';
 import { initialCards } from './initial-cards.js';
 import { Card } from './card.js';
 
-
-
 // Переменные profilePopup
 
 const profilePopupOpenButton = document.querySelector('.profile__edit-button');
@@ -27,6 +25,10 @@ const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_na
 const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_place');
 
 const cardsList = document.querySelector('.cards__items');
+
+
+const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
+const formValidatorNewCardForm = new FormValidator(formParameters, NewCardFormElement);
 
 
 // Универсальные функции
@@ -109,13 +111,20 @@ initialCards.forEach((item) => {
 
 });
 
+function prependCardToCardsContainer(cardConteinerElement, card) {
+  const newCardElement = card.generateCard();
+  cardConteinerElement.prepend(newCardElement);
+}
+
+
 // функционал отправки формы NewCard
 
 function handleFormNewCardSubmit(event) {
   event.preventDefault();
-  const link = newCardPlaceInput.value;
-  const name = newCardNameInput.value;
-  prependCardToCardsContainer(cardsList, link, name);
+  const card = new Card(
+   {link: newCardPlaceInput.value,
+    name: newCardNameInput.value}, '#cards__template');
+  prependCardToCardsContainer(cardsList, card);
   closePopup(popupNewCardElement);
 }
 
@@ -158,12 +167,14 @@ popupNewCardCloseButton.addEventListener('click', function () {
 popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
 
 
-renderInitialCards();
+// Валидация форм 
 
-const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
 formValidatorProfileForm.enableValidation();
-const formValidatorNewCardForm = new FormValidator(formParameters, NewCardFormElement);
 formValidatorNewCardForm.enableValidation();
+
+//  Добавление карточек из массива initialCards
+
+renderInitialCards();
 
 
 
