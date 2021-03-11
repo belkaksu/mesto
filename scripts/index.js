@@ -24,6 +24,15 @@ const NewCardFormElement = popupNewCardElement.querySelector('.popup-add-card__c
 const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_name');
 const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_place');
 
+// Переменные ImagePopup
+
+const imagePopup = document.querySelector('.popup-image');
+
+const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
+const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
+const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
+
+
 const cardsList = document.querySelector('.cards__items');
 
 
@@ -106,7 +115,7 @@ function handleFormProfileSubmit(event) {
 
 function renderInitialCards() {}
 initialCards.forEach((item) => {
-  const card = new Card(item, '#cards__template');
+  const card = new Card(item, '#cards__template', handleCardClick);
   const cardElement = card.generateCard();
   cardsList.append(cardElement);
 
@@ -124,7 +133,7 @@ function handleFormNewCardSubmit(event) {
   event.preventDefault();
   const card = new Card(
    {link: newCardPlaceInput.value,
-    name: newCardNameInput.value}, '#cards__template');
+    name: newCardNameInput.value}, '#cards__template', handleCardClick);
   prependCardToCardsContainer(cardsList, card);
   closePopup(popupNewCardElement);
 }
@@ -136,6 +145,17 @@ function openNewCardPopup() {
   cleanFormInput(NewCardFormElement);
   openPopup(popupNewCardElement);
 };
+
+
+// Открыие popupImage
+
+function handleCardClick(link, name) {
+
+  imagePopupImageElement.src = link;
+  imagePopupTextElement.textContent = name;
+  imagePopupImageElement.alt = name;
+  openPopup(imagePopup);
+}
 
 // Обработчики событий и вызовы функций
 
@@ -166,6 +186,10 @@ popupNewCardCloseButton.addEventListener('click', function () {
 });
 
 popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
+
+// imagePopup
+
+
 
 
 // Валидация форм

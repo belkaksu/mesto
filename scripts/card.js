@@ -1,16 +1,16 @@
-import { openPopup, closePopup, handleTargetClosePopup } from './index.js'
+import { closePopup, handleTargetClosePopup } from './index.js'
 
 const imagePopup = document.querySelector('.popup-image');
 
 const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
-const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
-const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
+
 
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._link = data.link;
     this._name = data.name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   // Копируем элемент карточки
@@ -42,7 +42,7 @@ export class Card {
       this._handleDelete(event);
     });
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._handleOpenPopup();
+      this._handleCardClick(this._link, this._name);
     });
     imagePopupCloseButton.addEventListener('click', () => {
       this._handleClosePopup();
@@ -62,14 +62,6 @@ export class Card {
 
   _handleDelete(event) {
     event.target.closest('.element').remove();
-  }
-
-  
-  _handleOpenPopup() {
-    openPopup(imagePopup);
-    imagePopupImageElement.src = this._link;
-    imagePopupTextElement.textContent = this._name;
-    imagePopupImageElement.alt = this._name;
   }
 
   _handleClosePopup() {
