@@ -115,15 +115,26 @@ function handleFormProfileSubmit(event) {
 
 function renderInitialCards() {}
 initialCards.forEach((item) => {
-  const card = new Card(item, '#cards__template', handleCardClick);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(item, '#cards__template', handleCardClick);
   cardsList.append(cardElement);
 
 });
 
-function prependCardToCardsContainer(cardConteinerElement, card) {
+// Создание карточки
 
-  const newCardElement = card.generateCard();
+function createCard(data, cardSelector, handleCardClick) {
+  const card = new Card(data, cardSelector, handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+// Добавляем новую карточку в DOM
+
+function prependCardToCardsContainer(cardConteinerElement) {
+
+  const newCardElement = createCard(
+    {link: newCardPlaceInput.value,
+     name: newCardNameInput.value}, '#cards__template', handleCardClick);
   cardConteinerElement.prepend(newCardElement);
 }
 
@@ -131,10 +142,7 @@ function prependCardToCardsContainer(cardConteinerElement, card) {
 
 function handleFormNewCardSubmit(event) {
   event.preventDefault();
-  const card = new Card(
-   {link: newCardPlaceInput.value,
-    name: newCardNameInput.value}, '#cards__template', handleCardClick);
-  prependCardToCardsContainer(cardsList, card);
+  prependCardToCardsContainer(cardsList);
   closePopup(popupNewCardElement);
 }
 
