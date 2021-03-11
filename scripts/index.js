@@ -1,6 +1,6 @@
-import { formParameters, FormValidator } from './validate.js';
+import { formParameters, FormValidator } from './Validate.js';
 import { initialCards } from './initial-cards.js';
-import { Card } from './card.js';
+import { Card } from './Card.js';
 
 // Переменные profilePopup
 
@@ -113,7 +113,7 @@ initialCards.forEach((item) => {
 });
 
 function prependCardToCardsContainer(cardConteinerElement, card) {
-  
+
   const newCardElement = card.generateCard();
   cardConteinerElement.prepend(newCardElement);
 }
