@@ -157,6 +157,13 @@ function handleCardClick(link, name) {
   openPopup(imagePopup);
 }
 
+
+
+// _handleTargetClosePopup(event) {
+//   handleTargetClosePopup(event);
+// }
+// }
+
 // Обработчики событий и вызовы функций
 
 // profilePopup
@@ -189,7 +196,11 @@ popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
 
 // imagePopup
 
+imagePopupCloseButton.addEventListener('click', () => {
+  closePopup(imagePopup);
+});
 
+imagePopup.addEventListener('mousedown', handleTargetClosePopup);
 
 
 // Валидация форм
