@@ -44,27 +44,27 @@ const formValidatorNewCardForm = new FormValidator(formParameters, NewCardFormEl
 
 // Универсальная функция закрытия попапа нажатием на клавишу ESC
 
-function handleKeyClosePopup(event, popup) {
-  if (event.key === 'Escape')
-    closePopup(popup);
+function closeByEscape(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_display_opened');
+  closePopup(openedPopup);
+  }
+
 }
 
 // универсальная функция открытия попапа
 
 export function openPopup(popup) {
   popup.classList.add('popup_display_opened');
-  document.addEventListener('keyup', (event) => {
-    handleKeyClosePopup(event, popup);
-  });
+  document.addEventListener('keydown', closeByEscape);
 };
 
 // универсальная функция закрытия попапа
 
 export function closePopup(popup) {
   popup.classList.remove('popup_display_opened');
-  document.removeEventListener('keyup', (event) => {
-    handleKeyClosePopup(event, popup);
-  });
+  document.removeEventListener('keydown', closeByEscape);
+
 }
 
 // универсальная функция закрытия попапа кликом на область вне формы
