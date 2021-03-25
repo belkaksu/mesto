@@ -1,4 +1,4 @@
-import { formParameters, FormValidator } from './Validate.js';
+import { formParameters, FormValidator } from './FormValidator.js';
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
 
@@ -20,7 +20,7 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 const popupNewCardOpenButton = document.querySelector('.profile__add-button');
 const popupNewCardElement = document.querySelector('.popup-add-card');
 const popupNewCardCloseButton = popupNewCardElement.querySelector('.popup-add-card__close-button');
-const NewCardFormElement = popupNewCardElement.querySelector('.popup-add-card__container');
+const newCardFormElement = popupNewCardElement.querySelector('.popup-add-card__container');
 const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_name');
 const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_place');
 
@@ -37,7 +37,7 @@ const cardsList = document.querySelector('.cards__items');
 
 
 const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
-const formValidatorNewCardForm = new FormValidator(formParameters, NewCardFormElement);
+const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
 
 
 // Универсальные функции
@@ -149,8 +149,8 @@ function handleFormNewCardSubmit(event) {
 // Открытие newCardPopup
 
 function openNewCardPopup() {
-  formValidatorNewCardForm.cleanFormErrorFields(NewCardFormElement);
-  cleanFormInput(NewCardFormElement);
+  formValidatorNewCardForm.cleanFormErrorFields(newCardFormElement);
+  cleanFormInput(newCardFormElement);
   openPopup(popupNewCardElement);
 };
 
@@ -192,7 +192,7 @@ profileFormElement.addEventListener('submit', handleFormProfileSubmit);
 
 // newCardPopup
 
-NewCardFormElement.addEventListener('submit', handleFormNewCardSubmit);
+newCardFormElement.addEventListener('submit', handleFormNewCardSubmit);
 
 popupNewCardOpenButton.addEventListener('click', openNewCardPopup);
 
