@@ -11,14 +11,17 @@ export const formParameters = {
 
 export class FormValidator {
 
-  constructor(objSelector, currentForm) {
-    this._formSelector = objSelector.formSelector;
-    this._inputSelector = objSelector.inputSelector;
-    this._submitButtonSelector = objSelector.submitButtonSelector;
-    this._spanSelector = objSelector.spanSelector;
-    this._inactiveButtonClass = objSelector.inactiveButtonClass;
-    this._inputErrorClass = objSelector.inputErrorClass;
-    this._errorClass = objSelector.errorClass;
+  constructor(formParams, currentForm) {
+    this._formSelector = formParams.formSelector;
+    this._inputSelector = formParams.inputSelector;
+    this._submitButtonSelector = formParams.submitButtonSelector;
+    this._spanSelector = formParams.spanSelector;
+    this._inactiveButtonClass = formParams.inactiveButtonClass;
+    this._inputErrorClass = formParams.inputErrorClass;
+    this._errorClass = formParams.errorClass;
+    this._inputList = Array.from(currentForm.querySelectorAll(this._inputSelector));
+    this._buttonElement = currentForm.querySelector(this._submitButtonSelector);
+    this._errorList = Array.from(currentForm.querySelectorAll(this._spanSelector));
 
     this._currentForm = currentForm;
     // this.enableValidation();
@@ -26,9 +29,9 @@ export class FormValidator {
 
   // Показываем сообщение об ошибке
 
-  _showInputError(formElement, inputElement, errorMessage) {
+  _showInputError(inputElement, errorMessage) {
 
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    const errorElement = this._currentForm.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
@@ -37,9 +40,9 @@ export class FormValidator {
 
   // Скрываем сообщение об ошибке
 
-  _hideInputError(formElement, inputElement) {
+  _hideInputError(inputElement) {
 
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    const errorElement = this._currentForm.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
@@ -48,11 +51,11 @@ export class FormValidator {
 
   // Проверяем поле формы на валидность
 
-  _isValid(formElement, inputElement) {
+  _isValid(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(formElement, inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(formElement, inputElement);
+      this._hideInputError(inputElement);
     }
   };
 
@@ -76,53 +79,58 @@ export class FormValidator {
     }
   }
 
-  _setEventListeners(formElement) {
+  _setEventListeners() {
 
-    const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = formElement.querySelector(this._submitButtonSelector);
+    this._toggleButtonState(this._inputList, this._buttonElement);
 
-    this._toggleButtonState(inputList, buttonElement);
-
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._isValid(formElement, inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._isValid(inputElement);
+        this._toggleButtonState(this._inputList, this._buttonElement);
       });
     });
   };
 
   // Функция очистки полей и сообщений об ошибках. Сделала ее публичной, так как она вызывается при открытии попап
 
-  cleanFormErrorFields(formElement) {
-    const errorList = Array.from(formElement.querySelectorAll(this._spanSelector));
-    const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = formElement.querySelector(this._submitButtonSelector);
+  cleanFormErrorFields() {
 
-    buttonElement.classList.add(this._inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
 
-    inputList.forEach((inputElement) => {
-       inputElement.classList.remove(this._inputErrorClass);
-     });
+    this._inputList.forEach((inputElement) => {
+      inputElement.classList.remove(this._inputErrorClass);
+    });
 
-     errorList.forEach(function(errorElement) {
+    this._errorList.forEach(function (errorElement) {
       errorElement.textContent = "";
     });
-   };
+  };
+
+  // //  Проверяет на валидность все формы
+
+  // enableValidation() {
+  //   const formList = Array.from(document.querySelectorAll(this._formSelector));
+
+  //   formList.forEach((formElement) => {
+  //     formElement.addEventListener('submit', (event) => {
+  //       event.preventDefault();
+  //     });
+  //     this._setEventListeners(formElement);
+  //   });
+  // };
 
   //  Проверяет на валидность все формы
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
 
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', (event) => {
-        event.preventDefault();
-      });
-      this._setEventListeners(formElement);
+    this._currentForm.addEventListener('submit', (event) => {
+      event.preventDefault();
     });
+    this._setEventListeners();
   };
 }
+
 
 
 
