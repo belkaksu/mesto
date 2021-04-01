@@ -2,10 +2,11 @@ import { formParameters, FormValidator } from './FormValidator.js';
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
 
+const popups = document.querySelectorAll('.popup')
+
 // Переменные profilePopup
 
 const profilePopupOpenButton = document.querySelector('.profile__edit-button');
-const profilePopupCloseButton = document.querySelector('.popup-profile__close-button');
 const profilePopupElement = document.querySelector('.popup-profile')
 const profileFormElement = document.querySelector('.popup__container_profile_data');
 
@@ -19,7 +20,6 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 
 const popupNewCardOpenButton = document.querySelector('.profile__add-button');
 const popupNewCardElement = document.querySelector('.popup-add-card');
-const popupNewCardCloseButton = popupNewCardElement.querySelector('.popup-add-card__close-button');
 const newCardFormElement = popupNewCardElement.querySelector('.popup-add-card__container');
 const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_name');
 const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_place');
@@ -27,8 +27,6 @@ const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_p
 // Переменные ImagePopup
 
 const imagePopup = document.querySelector('.popup-image');
-
-const imagePopupCloseButton = imagePopup.querySelector('.popup-image__close-button');
 const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
 const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
 
@@ -49,7 +47,6 @@ function closeByEscape(event) {
     const openedPopup = document.querySelector('.popup_display_opened');
   closePopup(openedPopup);
   }
-
 }
 
 // универсальная функция открытия попапа
@@ -65,13 +62,6 @@ export function closePopup(popup) {
   popup.classList.remove('popup_display_opened');
   document.removeEventListener('keydown', closeByEscape);
 
-}
-
-// универсальная функция закрытия попапа кликом на область вне формы
-
-export function handleTargetClosePopup(event) {
-  if (event.target === event.currentTarget)
-    closePopup(event.target);
 }
 
 // Универсальная функция очитки полей формы
@@ -165,26 +155,27 @@ function handleCardClick(link, name) {
   openPopup(imagePopup);
 }
 
-
-
-// _handleTargetClosePopup(event) {
-//   handleTargetClosePopup(event);
-// }
-// }
-
 // Обработчики событий и вызовы функций
+
+
+// Закрытие всех попапов нажатием на оверлей и "крестик"
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', (event) => {
+    if (event.target.classList.contains('popup_display_opened')) {
+      closePopup(popup)
+    };
+    if (event.target.classList.contains('popup__close-button')) {
+      closePopup(popup)
+    }
+  });
+
+});
+
 
 // profilePopup
 
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
-
-profilePopupCloseButton.addEventListener('click', function () {
-  closePopup(profilePopupElement);
-});
-
-//  Закрываем попап нажатием на дисплей
-
-profilePopupElement.addEventListener('mousedown', handleTargetClosePopup);
 
 // Отправляем форму
 
@@ -195,21 +186,6 @@ profileFormElement.addEventListener('submit', handleFormProfileSubmit);
 newCardFormElement.addEventListener('submit', handleFormNewCardSubmit);
 
 popupNewCardOpenButton.addEventListener('click', openNewCardPopup);
-
-popupNewCardCloseButton.addEventListener('click', function () {
-  closePopup(popupNewCardElement);
-});
-
-popupNewCardElement.addEventListener('mousedown', handleTargetClosePopup);
-
-// imagePopup
-
-imagePopupCloseButton.addEventListener('click', () => {
-  closePopup(imagePopup);
-});
-
-imagePopup.addEventListener('mousedown', handleTargetClosePopup);
-
 
 // Валидация форм
 
