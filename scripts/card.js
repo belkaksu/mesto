@@ -51,5 +51,4 @@ export class Card {
   _handleDelete(event) {
     event.target.closest('.element').remove();
   }
-
 }
