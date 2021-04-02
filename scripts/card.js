@@ -40,7 +40,7 @@ export class Card {
     });
   }
 
-  // Ставим лайк
+  // Ставим лайки
 
   _handleLike(event) {
     event.target.classList.toggle('element__icon_active');
