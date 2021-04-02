@@ -1,6 +1,6 @@
 import { formParameters, FormValidator } from './FormValidator.js';
 import { initialCards } from './initial-cards.js';
-import { Card } from './card.js';
+import { Card } from './Card.js';
 
 const popups = document.querySelectorAll('.popup')
 
