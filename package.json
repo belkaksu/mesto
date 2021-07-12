@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "1. Адрес сервиса Mesto: (https://belkaksu.github.io/mesto/index.html)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belkaksu/mesto-main-2.git"
+  },
+  "author": "Kseniya Lomakina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belkaksu/mesto-main-2/issues"
+  },
+  "homepage": "https://github.com/belkaksu/mesto-main-2#readme"
+}
