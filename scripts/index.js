@@ -1,6 +1,7 @@
 import { formParameters, FormValidator } from './FormValidator.js';
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
+import Section from './components/Section.js';
 
 const popups = document.querySelectorAll('.popup')
 
@@ -103,19 +104,37 @@ function handleFormProfileSubmit(event) {
 
 // Обходим массив и добавляем карточки на страницу
 
-function renderInitialCards() {}
-initialCards.forEach((item) => {
-  const cardElement = createCard(item, '#cards__template', handleCardClick);
-  cardsList.append(cardElement);
+const renderInitialCards = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardElement = createCard(item, '#cards__template', handleCardClick);
 
-});
+    renderInitialCards.addItem(cardElement);
+  }
+}, cardsList);
+
+
+
+
+
+
+// function renderInitialCards() {}
+// initialCards.forEach((item) => {
+//   const cardElement = createCard(item, '#cards__template', handleCardClick);
+//   cardsList.append(cardElement);
+
+// });
+
+// //  Добавление карточек из массива initialCards
+
+// renderInitialCards();
 
 // Создание карточки
 
 function createCard(data, cardSelector, handleCardClick) {
   const card = new Card(data, cardSelector, handleCardClick);
-  const cardElement = card.generateCard();
-  return cardElement;
+  return card.generateCard();
+
 }
 
 // Добавляем новую карточку в DOM
@@ -125,7 +144,7 @@ function prependCardToCardsContainer(cardConteinerElement) {
   const newCardElement = createCard(
     {link: newCardPlaceInput.value,
      name: newCardNameInput.value}, '#cards__template', handleCardClick);
-  cardConteinerElement.prepend(newCardElement);
+     cardConteinerElement.prepend(newCardElement);
 }
 
 // функционал отправки формы NewCard
@@ -192,11 +211,9 @@ popupNewCardOpenButton.addEventListener('click', openNewCardPopup);
 formValidatorProfileForm.enableValidation();
 formValidatorNewCardForm.enableValidation();
 
-//  Добавление карточек из массива initialCards
-
-renderInitialCards();
 
 
+renderInitialCards.renderItems();
 
 
 

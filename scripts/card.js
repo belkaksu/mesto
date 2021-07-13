@@ -16,7 +16,7 @@ export class Card {
 
   // Генерируем карточку
 
-  generateCard(link, name) {
+  generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
 
