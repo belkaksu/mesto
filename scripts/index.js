@@ -104,30 +104,16 @@ function handleFormProfileSubmit(event) {
 
 // Обходим массив и добавляем карточки на страницу
 
-const renderInitialCards = new Section({
+const cardsContainer = new Section({
   items: initialCards,
   renderer: (item) => {
     const cardElement = createCard(item, '#cards__template', handleCardClick);
 
-    renderInitialCards.addItem(cardElement);
+    cardsContainer.addItem(cardElement);
   }
 }, cardsList);
 
 
-
-
-
-
-// function renderInitialCards() {}
-// initialCards.forEach((item) => {
-//   const cardElement = createCard(item, '#cards__template', handleCardClick);
-//   cardsList.append(cardElement);
-
-// });
-
-// //  Добавление карточек из массива initialCards
-
-// renderInitialCards();
 
 // Создание карточки
 
@@ -144,14 +130,14 @@ function prependCardToCardsContainer(cardConteinerElement) {
   const newCardElement = createCard(
     {link: newCardPlaceInput.value,
      name: newCardNameInput.value}, '#cards__template', handleCardClick);
-     cardConteinerElement.prepend(newCardElement);
+     cardConteinerElement.addItem(newCardElement);
 }
 
 // функционал отправки формы NewCard
 
 function handleFormNewCardSubmit(event) {
   event.preventDefault();
-  prependCardToCardsContainer(cardsList);
+  prependCardToCardsContainer(cardsContainer);
   closePopup(popupNewCardElement);
 }
 
@@ -213,7 +199,7 @@ formValidatorNewCardForm.enableValidation();
 
 
 
-renderInitialCards.renderItems();
+cardsContainer.renderItems();
 
 
 
