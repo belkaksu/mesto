@@ -167,12 +167,9 @@ function handleCardClick(link, name) {
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (event) => {
-    if (event.target.classList.contains('popup_display_opened')) {
+    if (event.target.classList.contains('popup_display_opened') || event.target.classList.contains('popup__close-button')) {
       closePopup(popup)
     };
-    if (event.target.classList.contains('popup__close-button')) {
-      closePopup(popup)
-    }
   });
 
 });
