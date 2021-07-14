@@ -1,9 +1,17 @@
-import { formParameters, FormValidator } from './FormValidator.js';
+import { formParameters, FormValidator } from './components/FormValidator.js';
 import { initialCards } from './initial-cards.js';
 import { Card } from './Card.js';
 import Section from './components/Section.js';
+import Popup from './components/Popup.js';
+import PopupWithImage from './components/PopupWithImage.js';
 
-const popups = document.querySelectorAll('.popup')
+import { cardsList } from './utils/constants.js';
+
+
+
+
+
+const popupList = document.querySelectorAll('.popup')
 
 // Переменные profilePopup
 
@@ -31,8 +39,6 @@ const imagePopup = document.querySelector('.popup-image');
 const imagePopupImageElement = imagePopup.querySelector('.popup-image__picture');
 const imagePopupTextElement = imagePopup.querySelector('.popup-image__subtitle');
 
-
-const cardsList = document.querySelector('.cards__items');
 
 
 const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
@@ -114,7 +120,6 @@ const cardsContainer = new Section({
 }, cardsList);
 
 
-
 // Создание карточки
 
 function createCard(data, cardSelector, handleCardClick) {
@@ -165,7 +170,7 @@ function handleCardClick(link, name) {
 
 // Закрытие всех попапов нажатием на оверлей и "крестик"
 
-popups.forEach((popup) => {
+popupList.forEach((popup) => {
   popup.addEventListener('click', (event) => {
     if (event.target.classList.contains('popup_display_opened') || event.target.classList.contains('popup__close-button')) {
       closePopup(popup)
@@ -173,6 +178,8 @@ popups.forEach((popup) => {
   });
 
 });
+
+
 
 
 // profilePopup
