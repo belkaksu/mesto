@@ -78,7 +78,7 @@ imagePopup.setEventListeners();
 const cardsContainer = new Section({
   items: initialCards,
   renderer: (item) => {
-    const cardElement = createCard(item, '#cards__template', handleCardClick(item.link, item.name));
+    const cardElement = createCard(item, '#cards__template', () => handleCardClick(item.link, item.name));
 
     cardsContainer.addItem(cardElement);
   }
