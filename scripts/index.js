@@ -5,13 +5,10 @@ import Section from './components/Section.js';
 
 import PopupWithImage from './components/PopupWithImage.js';
 
-import { cardsList } from './utils/constants.js';
+import { cardsList, imagePopupSelector } from './utils/constants.js';
 
 
 
-
-
-const popupList = document.querySelectorAll('.popup')
 
 // Переменные profilePopup
 
@@ -33,42 +30,6 @@ const newCardFormElement = popupNewCardElement.querySelector('.popup-add-card__c
 const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_name');
 const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_place');
 
-// Переменные ImagePopup
-
-const imagePopupSelector = document.querySelector('.popup-image');
-
-
-
-
-const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
-const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
-
-
-// Универсальные функции
-
-// Универсальная функция закрытия попапа нажатием на клавишу ESC
-
-// function closeByEscape(event) {
-//   if (event.key === 'Escape') {
-//     const openedPopup = document.querySelector('.popup_display_opened');
-//   closePopup(openedPopup);
-//   }
-// }
-
-// // универсальная функция открытия попапа
-
-// export function openPopup(popup) {
-//   popup.classList.add('popup_display_opened');
-//   document.addEventListener('keydown', closeByEscape);
-// };
-
-// // универсальная функция закрытия попапа
-
-// export function closePopup(popup) {
-//   popup.classList.remove('popup_display_opened');
-//   document.removeEventListener('keydown', closeByEscape);
-
-// }
 
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
@@ -93,10 +54,18 @@ function createCard(data, cardSelector, handleCardClick) {
 
 }
 
+// Функция заполнения попапа данными и его открытия
+
+
 function handleCardClick(link, name) {
 
   imagePopup.open(link, name);
 }
+
+
+const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
+const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
+
 
 formValidatorProfileForm.enableValidation();
 formValidatorNewCardForm.enableValidation();
@@ -181,18 +150,6 @@ cardsContainer.renderItems();
 
 
 // Обработчики событий и вызовы функций
-
-
-// Закрытие всех попапов нажатием на оверлей и "крестик"
-
-// popupList.forEach((popup) => {
-//   popup.addEventListener('click', (event) => {
-//     if (event.target.classList.contains('popup_display_opened') || event.target.classList.contains('popup__close-button')) {
-//       closePopup(popup)
-//     };
-//   });
-
-// });
 
 
 
