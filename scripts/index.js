@@ -4,6 +4,7 @@ import { Card } from './Card.js';
 import Section from './components/Section.js';
 
 import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
 
 import { cardsList, imagePopupSelector } from './utils/constants.js';
 
@@ -13,7 +14,7 @@ import { cardsList, imagePopupSelector } from './utils/constants.js';
 // Переменные profilePopup
 
 const profilePopupOpenButton = document.querySelector('.profile__edit-button');
-const profilePopupElement = document.querySelector('.popup-profile')
+const profilePopupSelector = document.querySelector('.popup-profile')
 const profileFormElement = document.querySelector('.popup__container_profile_data');
 
 const profileNameInput = document.querySelector('.popup__item_data_title');
@@ -25,10 +26,10 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 // Переменные newCardPopup
 
 const popupNewCardOpenButton = document.querySelector('.profile__add-button');
-const popupNewCardElement = document.querySelector('.popup-add-card');
-const newCardFormElement = popupNewCardElement.querySelector('.popup-add-card__container');
-const newCardNameInput = popupNewCardElement.querySelector('.popup__item_data_name');
-const newCardPlaceInput = popupNewCardElement.querySelector('.popup__item_data_place');
+const popupNewCardSelector = document.querySelector('.popup-add-card');
+const newCardFormElement = popupNewCardSelector.querySelector('.popup-add-card__container');
+const newCardNameInput = popupNewCardSelector.querySelector('.popup__item_data_name');
+const newCardPlaceInput = popupNewCardSelector.querySelector('.popup__item_data_place');
 
 
 
@@ -116,17 +117,38 @@ cardsContainer.renderItems();
 
 // Обходим массив и добавляем карточки на страницу
 
+const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
+  const newCard = new Card(formData, '#cards__template', () => handleCardClick(formData.link, formData.name));
+  const newCardElement = newCard.generateCard();
+  cardsContainer.addItem(newCardElement);
+})
+
+addCardPopup.setEventListeners()
+
+popupNewCardOpenButton.addEventListener('click', () => {
+  addCardPopup.open()
+});
+
+const profilePopup = new PopupWithForm(profilePopupSelector, (handleSubmitForm) => {})
+
+profilePopup.setEventListeners()
+
+profilePopupOpenButton.addEventListener('click', () => {
+  profilePopup.open()
+});
 
 
 // Добавляем новую карточку в DOM
 
-// function prependCardToCardsContainer(cardConteinerElement) {
+function prependCardToCardsContainer(cardConteinerElement) {
 
-//   const newCardElement = createCard(
-//     {link: newCardPlaceInput.value,
-//      name: newCardNameInput.value}, '#cards__template', handleCardClick);
-//      cardConteinerElement.addItem(newCardElement);
-// }
+  const newCardElement = createCard(
+    {link: newCardPlaceInput.value,
+     name: newCardNameInput.value}, '#cards__template', () => handleCardClick((link, name)));
+     cardConteinerElement.addItem(newCardElement);
+}
+
+
 
 // функционал отправки формы NewCard
 
