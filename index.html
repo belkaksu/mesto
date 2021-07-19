@@ -129,9 +129,9 @@
             <input
               type="url"
               id="place-url"
-              class="popup__item popup__item_data_place"
+              class="popup__item popup__item_data_link"
               placeholder="Ссылка на картинку"
-              name="dataPlace"
+              name="dataLink"
               required
             />
             <span class="place-url-error popup__item-error"></span>
@@ -160,7 +160,11 @@
     </div>
     <template id="cards__template">
       <li class="element">
-        <img class="element__image" alt="Фото" src="https://imgholder.ru/323x300/9dbf16/fff&text=image"/>
+        <img
+          class="element__image"
+          alt="Фото"
+          src="https://imgholder.ru/323x300/9dbf16/fff&text=image"
+        />
         <button
           class="element__delete-button"
           type="button"
@@ -180,8 +184,5 @@
 
     <script type="module" src="./scripts/initial-cards.js"></script>
     <script type="module" src="./scripts/index.js"></script>
-
-
   </body>
 </html>
-

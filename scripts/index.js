@@ -29,7 +29,7 @@ const popupNewCardOpenButton = document.querySelector('.profile__add-button');
 const popupNewCardSelector = document.querySelector('.popup-add-card');
 const newCardFormElement = popupNewCardSelector.querySelector('.popup-add-card__container');
 const newCardNameInput = popupNewCardSelector.querySelector('.popup__item_data_name');
-const newCardLinkInput = popupNewCardSelector.querySelector('.popup__item_data_place');
+const newCardLinkInput = popupNewCardSelector.querySelector('.popup__item_data_link');
 
 
 
@@ -118,8 +118,10 @@ cardsContainer.renderItems();
 // Обходим массив и добавляем карточки на страницу
 
 const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
-  const newCard = new Card({ link: formData.dataPlace,
-    name: formData.dataName }, '#cards__template', () => handleCardClick(formData.link, formData.name));
+  const newCard = new Card({
+    link: formData.dataLink,
+    name: formData.dataName
+  }, '#cards__template', () => handleCardClick(formData.link, formData.name));
   const newCardElement = newCard.generateCard();
   cardsContainer.addItem(newCardElement);
   addCardPopup.close();
@@ -132,7 +134,7 @@ popupNewCardOpenButton.addEventListener('click', () => {
   addCardPopup.open()
 });
 
-const profilePopup = new PopupWithForm(profilePopupSelector, (handleSubmitForm) => {})
+const profilePopup = new PopupWithForm(profilePopupSelector, (handleSubmitForm) => { })
 
 profilePopup.setEventListeners()
 
@@ -146,9 +148,11 @@ profilePopupOpenButton.addEventListener('click', () => {
 function prependCardToCardsContainer(cardConteinerElement) {
 
   const newCardElement = createCard(
-    {link: newCardLinkInput.value,
-     name: newCardNameInput.value}, '#cards__template', () => handleCardClick((link, name)));
-     cardConteinerElement.addItem(newCardElement);
+    {
+      link: newCardLinkInput.value,
+      name: newCardNameInput.value
+    }, '#cards__template', () => handleCardClick((link, name)));
+  cardConteinerElement.addItem(newCardElement);
 }
 
 
