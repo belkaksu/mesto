@@ -24,6 +24,7 @@ export class FormValidator {
     this._errorList = Array.from(currentForm.querySelectorAll(this._spanSelector));
 
     this._currentForm = currentForm;
+    // this._hasInput = false;
     // this.enableValidation();
   }
 
@@ -70,7 +71,7 @@ export class FormValidator {
   // Состояние кнопки "отправить", в зависимости от валидности полей
 
   _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInput(inputList)) {
+    if (this._hasInvalidInput(inputList) /*|| !this._hasInput*/) {
       buttonElement.classList.add(this._inactiveButtonClass);
       buttonElement.setAttribute('disabled', true);
     } else {
@@ -87,6 +88,7 @@ export class FormValidator {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);
         this._toggleButtonState(this._inputList, this._buttonElement);
+        // this._hasInput = true;
       });
     });
   };
@@ -123,7 +125,6 @@ export class FormValidator {
   //  Проверяет на валидность все формы
 
   enableValidation() {
-
     this._currentForm.addEventListener('submit', (event) => {
       event.preventDefault();
     });

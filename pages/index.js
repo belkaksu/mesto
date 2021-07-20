@@ -132,12 +132,11 @@ profilePopup.setEventListeners()
 
 profilePopupOpenButton.addEventListener('click', () => {
 
+  formValidatorProfileForm.cleanFormErrorFields();
   const userInfoInput = userInfo.getUserInfo();
   profileNameSelector.value = userInfoInput.userName;
   profileJobSelector.value = userInfoInput.userJob;
   profilePopup.open();
-  formValidatorProfileForm.enableValidation();
-
 
 
 
