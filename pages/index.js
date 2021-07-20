@@ -46,9 +46,10 @@ function handleCardClick(link, name) {
 const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
 const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
 
-
-formValidatorProfileForm.enableValidation();
 formValidatorNewCardForm.enableValidation();
+formValidatorProfileForm.enableValidation();
+
+
 
 
 
@@ -98,19 +99,33 @@ cardsContainer.renderItems();
 
 const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
   prependNewCardToCardsContainer(cardsContainer, formData.dataName, formData.dataLink)
+
   addCardPopup.close();
+
+
 
 })
 
 addCardPopup.setEventListeners()
 
 popupNewCardOpenButton.addEventListener('click', () => {
-  addCardPopup.open()
+
+  addCardPopup.open();
+  formValidatorNewCardForm.enableValidation();
+
+
+
+
 });
 
 const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
+
   userInfo.setUserInfo(formData);
-  profilePopup.close()
+  profilePopup.close();
+
+
+
+
 })
 
 profilePopup.setEventListeners()
@@ -121,6 +136,10 @@ profilePopupOpenButton.addEventListener('click', () => {
   profileNameSelector.value = userInfoInput.userName;
   profileJobSelector.value = userInfoInput.userJob;
   profilePopup.open();
+  formValidatorProfileForm.enableValidation();
+
+
+
 
 });
 
