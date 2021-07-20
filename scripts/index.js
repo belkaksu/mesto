@@ -118,12 +118,14 @@ cardsContainer.renderItems();
 // Обходим массив и добавляем карточки на страницу
 
 const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
-  const newCard = new Card({
-    link: formData.dataLink,
-    name: formData.dataName
-  }, '#cards__template', () => handleCardClick(formData.link, formData.name));
-  const newCardElement = newCard.generateCard();
-  cardsContainer.addItem(newCardElement);
+  prependCardToCardsContainer(cardsContainer, formData.dataName, formData.dataLink)
+
+  // const newCard = new Card({
+  //   link: formData.dataLink,
+  //   name: formData.dataName
+  // }, '#cards__template', () => handleCardClick(formData.link, formData.name));
+  // const newCardElement = newCard.generateCard();
+  // cardsContainer.addItem(newCardElement);
   addCardPopup.close();
 
 })
@@ -145,13 +147,13 @@ profilePopupOpenButton.addEventListener('click', () => {
 
 // Добавляем новую карточку в DOM
 
-function prependCardToCardsContainer(cardConteinerElement) {
+function prependCardToCardsContainer(cardConteinerElement, name, link) {
 
-  const newCardElement = createCard(
-    {
-      link: newCardLinkInput.value,
-      name: newCardNameInput.value
-    }, '#cards__template', () => handleCardClick((link, name)));
+ const newCard = new Card({
+    link: link,
+    name: name
+  }, '#cards__template', () => handleCardClick(link, name));
+  const newCardElement = newCard.generateCard();
   cardConteinerElement.addItem(newCardElement);
 }
 
