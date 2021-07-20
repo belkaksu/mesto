@@ -1,14 +1,14 @@
-import { formParameters, FormValidator } from './components/FormValidator.js';
-import { initialCards } from './utils/initial-cards.js';
-import { Card } from './components/Card.js';
-import Section from './components/Section.js';
+import { formParameters, FormValidator } from '../scripts/components/FormValidator.js';
+import { initialCards } from '../scripts/utils/initial-cards.js';
+import { Card } from '../scripts/components/Card.js';
+import Section from '../scripts/components/Section.js';
 
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import UserInfo from '../scripts/components/UserInfo.js';
 
 
-import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameSelector, profileJobSelector, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement } from './utils/constants.js';
+import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameSelector, profileJobSelector, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement } from '../scripts/utils/constants.js';
 
 
 
