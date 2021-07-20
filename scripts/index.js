@@ -140,12 +140,13 @@ profilePopup.setEventListeners()
 profilePopupOpenButton.addEventListener('click', () => {
 
   const userInfoInput = userInfo.getUserInfo();
-  profileNameElement.value = userInfoInput.userName;
-  profileJobElement.value = userInfoInput.userJob;
-  profilePopup.open()
+  profileNameSelector.value = userInfoInput.userName;
+  profileJobSelector.value = userInfoInput.userJob;
+  profilePopup.open();
+  
 });
 
-const userInfo = new UserInfo(profileNameSelector, profileJobSelector)
+const userInfo = new UserInfo(profileNameElement, profileJobElement)
 
 
 
