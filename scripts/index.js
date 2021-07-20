@@ -1,6 +1,6 @@
 import { formParameters, FormValidator } from './components/FormValidator.js';
-import { initialCards } from './initial-cards.js';
-import { Card } from './Card.js';
+import { initialCards } from './utils/initial-cards.js';
+import { Card } from './components/Card.js';
 import Section from './components/Section.js';
 
 import PopupWithImage from './components/PopupWithImage.js';
@@ -8,29 +8,7 @@ import PopupWithForm from './components/PopupWithForm.js';
 import UserInfo from './components/UserInfo.js';
 
 
-import { cardsList, imagePopupSelector } from './utils/constants.js';
-
-
-
-
-// Переменные profilePopup
-
-const profilePopupOpenButton = document.querySelector('.profile__edit-button');
-const profilePopupSelector = document.querySelector('.popup-profile')
-const profileFormElement = document.querySelector('.popup__container_profile_data');
-
-const profileNameSelector = document.querySelector('.popup__item_user_name');
-const profileJobSelector = document.querySelector('.popup__item_user_job');
-
-const profileNameElement = document.querySelector('.profile__title');
-const profileJobElement = document.querySelector('.profile__subtitle');
-
-// Переменные newCardPopup
-
-const popupNewCardOpenButton = document.querySelector('.profile__add-button');
-const popupNewCardSelector = document.querySelector('.popup-add-card');
-const newCardFormElement = popupNewCardSelector.querySelector('.popup-add-card__container');
-
+import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameSelector, profileJobSelector, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement } from './utils/constants.js';
 
 
 
@@ -143,7 +121,7 @@ profilePopupOpenButton.addEventListener('click', () => {
   profileNameSelector.value = userInfoInput.userName;
   profileJobSelector.value = userInfoInput.userJob;
   profilePopup.open();
-  
+
 });
 
 const userInfo = new UserInfo(profileNameElement, profileJobElement)
