@@ -7,8 +7,8 @@ export const profilePopupOpenButton = document.querySelector('.profile__edit-but
 export const profilePopupSelector = document.querySelector('.popup-profile')
 export const profileFormElement = document.querySelector('.popup__container_profile_data');
 
-export const profileNameSelector = document.querySelector('.popup__item_user_name');
-export const profileJobSelector = document.querySelector('.popup__item_user_job');
+export const profileNameInput = document.querySelector('.popup__item_user_name');
+export const profileJobInput = document.querySelector('.popup__item_user_job');
 
 export const profileNameElement = document.querySelector('.profile__title');
 export const profileJobElement = document.querySelector('.profile__subtitle');

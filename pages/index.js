@@ -7,14 +7,15 @@ import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 
+import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement } from '../scripts/utils/constants.js';
 
-import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameSelector, profileJobSelector, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement } from '../scripts/utils/constants.js';
-
-
+//  Image Popup
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
 
 imagePopup.setEventListeners();
+
+// Отрисовка массива карточек
 
 const cardsContainer = new Section({
   items: initialCards,
@@ -25,129 +26,36 @@ const cardsContainer = new Section({
   }
 }, cardsList);
 
+// Функция заполнения попапа данными и его открытия
+
+function handleCardClick(link, name) {
+  imagePopup.open(link, name);
+}
 
 // Создание карточки
 
 function createCard(data, cardSelector, handleCardClick) {
   const card = new Card(data, cardSelector, handleCardClick);
   return card.generateCard();
-
 }
 
-// Функция заполнения попапа данными и его открытия
-
-
-function handleCardClick(link, name) {
-
-  imagePopup.open(link, name);
-}
-
-
-const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
-const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
-
-formValidatorNewCardForm.enableValidation();
-formValidatorProfileForm.enableValidation();
-
-
-
-
-
-cardsContainer.renderItems();
-
-
-
-
-// Универсальная функция очитки полей формы
-
-// function cleanFormInput(formElement) {
-//   formElement.reset();
-// }
-
-// Функции для profilePopup
-
-// Объявляем функцию, которая вставляет текстовое содержимое в поля Input
-
-// function fillProfilePopupForm() {
-//   profileNameInput.value = profileNameElement.textContent;
-//   profileJobInput.value = profileJobElement.textContent;
-// }
-
-// Открываем попап и вставляем данные из профиля в поля Input
-// function openProfilePopup() {
-//   formValidatorProfileForm.cleanFormErrorFields();
-//   fillProfilePopupForm();
-//   openPopup(profilePopupElement);
-// }
-
-// Объявляем функцию, которая вставляет введенные данные в профиль пользователя
-
-// function setProfileData() {
-//   profileNameElement.textContent = profileNameInput.value;
-//   profileJobElement.textContent = profileJobInput.value;
-// }
-
-//  Вставляем введенную информацию в профиль, закрываем попап нажатием на кнопку "сохранить"
-
-// function handleFormProfileSubmit(event) {
-//   event.preventDefault();
-//   setProfileData();
-//   closePopup(profilePopupElement);
-// }
-
-// Обходим массив и добавляем карточки на страницу
+// addCardPopup
+// Добавляем новую карточку на страницу
 
 const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
   prependNewCardToCardsContainer(cardsContainer, formData.dataName, formData.dataLink)
-
   addCardPopup.close();
+});
 
-
-
-})
-
-addCardPopup.setEventListeners()
+addCardPopup.setEventListeners();
 
 popupNewCardOpenButton.addEventListener('click', () => {
 
   addCardPopup.open();
   formValidatorNewCardForm.enableValidation();
-
-
-
-
 });
 
-const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
-
-  userInfo.setUserInfo(formData);
-  profilePopup.close();
-
-
-
-
-})
-
-profilePopup.setEventListeners()
-
-profilePopupOpenButton.addEventListener('click', () => {
-
-  formValidatorProfileForm.cleanFormErrorFields();
-  const userInfoInput = userInfo.getUserInfo();
-  profileNameSelector.value = userInfoInput.userName;
-  profileJobSelector.value = userInfoInput.userJob;
-  profilePopup.open();
-
-
-
-});
-
-const userInfo = new UserInfo(profileNameElement, profileJobElement)
-
-
-
-
-// Добавляем новую карточку в DOM
+// Отрисовка новой карточки
 
 function prependNewCardToCardsContainer(cardConteinerElement, name, link) {
 
@@ -159,25 +67,38 @@ function prependNewCardToCardsContainer(cardConteinerElement, name, link) {
   cardConteinerElement.addItem(newCardElement);
 }
 
+// Profile popup
 
+const userInfo = new UserInfo(profileNameElement, profileJobElement)
 
+const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
+  userInfo.setUserInfo(formData);
+  profilePopup.close();
+})
 
+profilePopup.setEventListeners();
 
-// profilePopup
+profilePopupOpenButton.addEventListener('click', () => {
 
-// profilePopupOpenButton.addEventListener('click', openProfilePopup);
-
-// // Отправляем форму
-
-// profileFormElement.addEventListener('submit', handleFormProfileSubmit);
-
-// // newCardPopup
-
-// newCardFormElement.addEventListener('submit', handleFormNewCardSubmit);
-
-// popupNewCardOpenButton.addEventListener('click', openNewCardPopup);
+  formValidatorProfileForm.cleanFormErrorFields();
+  const userInfoInput = userInfo.getUserInfo();
+  profileNameInput.value = userInfoInput.userName;
+  profileJobInput.value = userInfoInput.userJob;
+  profilePopup.open();
+});
 
 // Валидация форм
+
+const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
+const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
+
+formValidatorNewCardForm.enableValidation();
+formValidatorProfileForm.enableValidation();
+
+cardsContainer.renderItems();
+
+
+
 
 
 
