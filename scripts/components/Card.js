@@ -26,7 +26,7 @@ export class Card {
     this._element.querySelector('.element__title').textContent = this._name;
 
     return this._element;
-  } 
+  }
 
   _setEventListeners() {
     this._element.querySelector('.element__icon').addEventListener('click', (event) => {

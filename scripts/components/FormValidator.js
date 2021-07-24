@@ -24,7 +24,7 @@ export class FormValidator {
     this._errorList = Array.from(currentForm.querySelectorAll(this._spanSelector));
 
     this._currentForm = currentForm;
-   
+
   }
 
   // Показываем сообщение об ошибке

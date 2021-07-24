@@ -19,7 +19,6 @@ export default class Popup {
     if (event.key === "Escape") {
       this.close();
     }
-
   }
 
   setEventListeners() {
