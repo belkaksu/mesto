@@ -3,4 +3,5 @@
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
+  cursor: url('../../../images/profile__cursor.svg'), pointer;
 }
