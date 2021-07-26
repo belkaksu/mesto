@@ -174,7 +174,33 @@
         </div>
       </section>
 
-      
+      <section class="popup popup-new-avatar">
+        <div class="popup__main popup-new-avatar__main">
+          <button
+            class="popup__close-button popup-new-avatar__close-button"
+            type="button"
+            aria-label="Кнопка закрытия попапа"
+          ></button>
+          <form
+            class="popup__container popup-new-avatar__container"
+            name="popupNewAvatar"
+            novalidate
+          >
+            <h2 class="popup__title popup-new-avatar__title">Обновить аватар</h2>
+
+            <input
+              type="url"
+              id="avatar-url"
+              class="popup__item popup-new-avatar__link"
+              placeholder="Ссылка на картинку"
+              name="avatarLink"
+              required
+            />
+            <span class="popup__item-error popup-new-avatar__link-error"></span>
+            <button type="submit" class="popup__submit-button popup-new-avatar__submit-button">Сохранить</button>
+          </form>
+        </div>
+      </section>
     </div>
     <template id="cards__template">
       <li class="element">

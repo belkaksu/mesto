@@ -53,3 +53,8 @@
 @import url("../blocks/popup-card-delete/__main/popup-card-delete__main.css");
 @import url("../blocks/popup-card-delete/__container/popup-card-delete__container.css");
 @import url("../blocks/popup-card-delete/__title/popup-card-delete__title.css");
+
+@import url("../blocks/popup-new-avatar/__main/popup-new-avatar__main.css");
+@import url("../blocks/popup-new-avatar/__container/popup-new-avatar__container.css");
+@import url("../blocks/popup-new-avatar/__title/popup-new-avatar__title.css");
+@import url("../blocks/popup-new-avatar/__submit-button/popup-new-avatar__submit-button.css");
