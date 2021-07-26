@@ -14,3 +14,4 @@ export default class UserInfo {
     this._userJobElement.textContent = item.userJob;
   }
 }
+

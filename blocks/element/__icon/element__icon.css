@@ -1,11 +1,10 @@
 .element__icon {
   width: 22px;
   height: 19px;
-  background-image: url('../../../images/profile__heart.svg');
+  background-image: url("../../../images/profile__heart.svg");
   background-size: cover;
   border: none;
   background-color: white;
-
 }
 
 .element__icon:hover {

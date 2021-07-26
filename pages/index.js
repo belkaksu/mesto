@@ -58,14 +58,14 @@ popupNewCardOpenButton.addEventListener('click', () => {
 
 // Отрисовка новой карточки
 
-function prependNewCardToCardsContainer(cardConteinerElement, name, link) {
+function prependNewCardToCardsContainer(cardContainerElement, name, link) {
 
   const newCard = new Card({
     link: link,
     name: name
   }, '#cards__template', () => handleCardClick(link, name));
   const newCardElement = newCard.generateCard();
-  cardConteinerElement.addItem(newCardElement);
+  cardContainerElement.addItem(newCardElement);
 }
 
 // Profile popup
