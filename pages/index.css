@@ -50,4 +50,6 @@
 @import url("../blocks/popup-image/__container/popup-image__container.css");
 @import url("../blocks/popup-image/__picture/popup-image__picture.css");
 @import url("../blocks/popup-image/__subtitle/popup-image__subtitle.css");
-@import url("../blocks/popup-card-delete/popup-card-delete.css");
+@import url("../blocks/popup-card-delete/__main/popup-card-delete__main.css");
+@import url("../blocks/popup-card-delete/__container/popup-card-delete__container.css");
+@import url("../blocks/popup-card-delete/__title/popup-card-delete__title.css");
