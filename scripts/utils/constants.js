@@ -12,6 +12,7 @@ export const profileJobInput = document.querySelector('.popup__item_user_job');
 
 export const profileNameElement = document.querySelector('.profile__title');
 export const profileJobElement = document.querySelector('.profile__subtitle');
+export const userAvatarElement = document.querySelector('.profile__avatar')
 
 // Переменные newCardPopup
 

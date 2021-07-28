@@ -6,10 +6,20 @@ import Section from '../scripts/components/Section.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+import Api from '../scripts/components/Api.js';
 import './index.css';
 
-import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement } from '../scripts/utils/constants.js';
+import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement, userAvatarElement } from '../scripts/utils/constants.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26',
+  headers: {
+    authorization: '82034b5c-94c4-471a-b185-eb63c714f946',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialCards()
 //  Image Popup
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
@@ -22,7 +32,6 @@ const cardsContainer = new Section({
   items: initialCards,
   renderer: (item) => {
     const cardElement = createCard(item, '#cards__template', () => handleCardClick(item.link, item.name));
-
     cardsContainer.addItem(cardElement);
   }
 }, cardsList);
