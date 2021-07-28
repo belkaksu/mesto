@@ -19,8 +19,11 @@ const api = new Api({
   }
 });
 
-api.getInitialCards()
-//  Image Popup
+api.getInitialCards() {
+  
+};
+api.getUserInfo();
+
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
 
