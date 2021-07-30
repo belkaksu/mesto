@@ -1,11 +1,35 @@
 
 export class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor({data, cardSelector, handleCardClick}) {
     this._link = data.link;
     this._name = data.name;
+    // this._userId = userId;
+
+    // this._likesArray = data.likes;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    // this._handleLikeClick = handleLikeClick;
+    // this._handleDeleteIconClick = handleDeleteIconClick;
   }
+
+
+
+  // this._card = card;
+  // this._name = card.name;
+  // this._src = card.link;
+  // this._alt = card.name;
+  // this._cardOwnerId = card.owner._id;
+  // this._likes = card.likes;
+  // this._userId = userId;
+  // this._likeAmount = card.likes.length;
+  // this._template = template;
+  // this._handleCardClick = handleCardClick;
+  // this._likeClick = likeClick;
+  // this._dislikeClick = dislikeClick;
+  // this._handleDeleteClick = handleDeleteClick;
+
+
+
 
   // Копируем элемент карточки
 
@@ -51,4 +75,8 @@ export class Card {
   _handleDelete(event) {
     event.target.closest('.element').remove();
   }
+
+
+
+
 }

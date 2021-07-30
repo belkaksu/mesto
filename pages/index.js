@@ -19,9 +19,27 @@ const api = new Api({
   }
 });
 
+
+// Отрисовка массива карточек
+
+const cardsContainer = new Section({
+  renderer: (item) => {
+    cardsContainer.addItem(createCard(item));
+  }
+}, cardsList);
+
+
+
 const userInfo = new UserInfo(profileNameElement, profileJobElement, profileAvatarElement)
 
-// api.getInitialCards()
+api.getInitialCards()
+  .then((cardData) => {
+    cardsContainer.renderItems(cardData)
+  }).catch((err) => {
+    console.log("Ошибка в получении массива карточек")
+  })
+
+
 
 api.getUserInfo()
   .then((data) => {
@@ -32,7 +50,8 @@ api.getUserInfo()
     }
     userInfo.setUserInfo(user.userName, user.userJob)
     userInfo.setUserAvatar(user.userAvatar)
-
+  }).catch((err) => {
+    console.log("Ошибка загрузки данных пользователя")
   })
 
 
@@ -42,22 +61,31 @@ api.getUserInfo()
 
 
 
+// Создание карточки
+
+function createCard(dataCard) {
+  const card = new Card({
+    data: dataCard,
+    cardSelector: '#cards__template',
+    handleCardClick: (evt) => {
+      const data = {};
+      data.name = evt.target.alt;
+      data.link = evt.target.src;
+      imagePopup.open(data);
+
+
+    }
+  });
+  return card.generateCard();
+}
 
 
 
-// const imagePopup = new PopupWithImage(imagePopupSelector);
+const imagePopup = new PopupWithImage(imagePopupSelector);
 
-// imagePopup.setEventListeners();
+imagePopup.setEventListeners();
 
-// // Отрисовка массива карточек
 
-// const cardsContainer = new Section({
-
-//   renderer: (item) => {
-//     const cardElement = createCard(item, '#cards__template', () => handleCardClick(item.link, item.name));
-//     cardsContainer.addItem(cardElement);
-//   }
-// }, cardsList);
 
 // // Функция заполнения попапа данными и его открытия
 
@@ -65,70 +93,65 @@ api.getUserInfo()
 //   imagePopup.open(link, name);
 // }
 
-// // Создание карточки
 
-// function createCard(data, cardSelector, handleCardClick) {
-//   const card = new Card(data, cardSelector, handleCardClick);
-//   return card.generateCard();
-// }
 
-// // addCardPopup
-// // Добавляем новую карточку на страницу
+// addCardPopup
+// Добавляем новую карточку на страницу
 
-// const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
-//   prependNewCardToCardsContainer(cardsContainer, formData.dataName, formData.dataLink)
-//   addCardPopup.close();
-// });
+const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
+  prependNewCardToCardsContainer(cardsContainer, formData.dataName, formData.dataLink)
+  addCardPopup.close();
+});
 
-// addCardPopup.setEventListeners();
+addCardPopup.setEventListeners();
 
-// popupNewCardOpenButton.addEventListener('click', () => {
+popupNewCardOpenButton.addEventListener('click', () => {
 
-//   addCardPopup.open();
-//   formValidatorNewCardForm.enableValidation();
-// });
+  addCardPopup.open();
+  formValidatorNewCardForm.enableValidation();
+});
 
-// // Отрисовка новой карточки
+// Отрисовка новой карточки
 
-// function prependNewCardToCardsContainer(cardContainerElement, name, link) {
+function prependNewCardToCardsContainer(cardContainerElement, name, link) {
 
-//   const newCard = new Card({
-//     link: link,
-//     name: name
-//   }, '#cards__template', () => handleCardClick(link, name));
-//   const newCardElement = newCard.generateCard();
-//   cardContainerElement.addItem(newCardElement);
-// }
+  const newCard = new Card({
+    link: link,
+    name: name
+  }, '#cards__template', () => handleCardClick(link, name));
+  const newCardElement = newCard.generateCard();
+  cardContainerElement.addItem(newCardElement);
+}
 
-// // Profile popup
+// Profile popup
 
 
 
-// const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
-//   // userInfo.setUserInfo(formData);
-//   profilePopup.close();
-// })
+const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
+  userInfo.setUserInfo(formData);
+  profilePopup.close();
+})
 
-// profilePopup.setEventListeners();
+profilePopup.setEventListeners();
 
-// profilePopupOpenButton.addEventListener('click', () => {
+profilePopupOpenButton.addEventListener('click', () => {
 
-//   formValidatorProfileForm.cleanFormErrorFields();
-//   // const userInfoInput = userInfo.getUserInfo();
-//   profileNameInput.value = userInfoInput.userName;
-//   profileJobInput.value = userInfoInput.userJob;
-//   profilePopup.open();
-// });
+  formValidatorProfileForm.cleanFormErrorFields();
+  const userInfoInput = userInfo.getUserInfo();
+  profileNameInput.value = userInfoInput.userName;
+  profileJobInput.value = userInfoInput.userJob;
+  profilePopup.open();
+});
 
-// // Валидация форм
+// Валидация форм
 
-// const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
-// const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
+const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
+const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
 
-// formValidatorNewCardForm.enableValidation();
-// formValidatorProfileForm.enableValidation();
+formValidatorNewCardForm.enableValidation();
+formValidatorProfileForm.enableValidation();
 
-// cardsContainer.renderItems();
+
 
 
 
