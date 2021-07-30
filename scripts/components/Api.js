@@ -15,17 +15,18 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
+
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
 
@@ -38,8 +39,8 @@ export default class Api {
         about: data.about
       })
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
 
@@ -51,8 +52,8 @@ export default class Api {
         avatar: data.avatarLink,
       })
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
 
@@ -65,8 +66,8 @@ export default class Api {
         link: data.link
       })
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
 
@@ -75,8 +76,8 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
 
@@ -85,8 +86,8 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
 
@@ -95,8 +96,8 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => {
-        this._handleResponse(res);
+      .then((res) => {
+        return this._handleResponse(res)
       })
   }
 }

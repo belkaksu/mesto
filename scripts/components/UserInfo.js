@@ -5,15 +5,21 @@ export default class UserInfo {
     this._userAvatarElement = userAvatarElement;
   }
   getUserInfo() {
-    this._userInfo = {};
-    this._userInfo.userName = this._userNameElement.textContent;
-    this._userInfo.userJob = this._userJobElement.textContent;
-    this._userAvatarElement = this._userAvatarElement.src;
-    return this._userInfo
+    return {
+    userName: this._userNameElement.textContent,
+    userJob: this._userJobElement.textContent,
+    userAvatar: this._userAvatarElement.src,
+    }
+
+
   }
-  setUserInfo(item) {
-    this._userNameElement.textContent = item.userName;
-    this._userJobElement.textContent = item.userJob;
+  setUserInfo(userName, userJob) {
+    this._userNameElement.textContent = userName;
+    this._userJobElement.textContent = userJob;
+  }
+
+  setUserAvatar(userAvatar) {
+    this._userAvatarElement.src = userAvatar;
+
   }
 }
-
