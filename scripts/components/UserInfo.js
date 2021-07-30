@@ -8,7 +8,7 @@ export default class UserInfo {
     return {
     userName: this._userNameElement.textContent,
     userJob: this._userJobElement.textContent,
-    userAvatar: this._userAvatarElement.src,
+    // userAvatar: this._userAvatarElement.src,
     }
 
 

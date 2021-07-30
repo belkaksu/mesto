@@ -67,16 +67,18 @@ function createCard(dataCard) {
   const card = new Card({
     data: dataCard,
     cardSelector: '#cards__template',
-    handleCardClick: (evt) => {
-      const data = {};
-      data.name = evt.target.alt;
-      data.link = evt.target.src;
-      imagePopup.open(data);
-
-
-    }
+    handleCardClick: () => handleCardClick(evt)
   });
   return card.generateCard();
+}
+
+// Функция заполнения попапа данными и его открытия
+
+function handleCardClick(evt) {
+  const data = {};
+  data.name = evt.target.alt;
+  data.link = evt.target.src;
+  imagePopup.open(data);
 }
 
 
@@ -86,21 +88,22 @@ const imagePopup = new PopupWithImage(imagePopupSelector);
 imagePopup.setEventListeners();
 
 
-
-// // Функция заполнения попапа данными и его открытия
-
-// function handleCardClick(link, name) {
-//   imagePopup.open(link, name);
-// }
-
-
-
 // addCardPopup
 // Добавляем новую карточку на страницу
 
 const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
-  prependNewCardToCardsContainer(cardsContainer, formData.dataName, formData.dataLink)
-  addCardPopup.close();
+  const newCard = {
+    name: formData.dataName,
+    link: formData.dataLink
+  }
+    api.addCard(newCard)
+    .then((res) => {
+      cardsContainer.addItem(createCard(res));
+      addCardPopup.close();
+    }).catch((err) => {
+      console.log("Ошибка загрузки карточки")
+    })
+
 });
 
 addCardPopup.setEventListeners();
@@ -113,15 +116,18 @@ popupNewCardOpenButton.addEventListener('click', () => {
 
 // Отрисовка новой карточки
 
-function prependNewCardToCardsContainer(cardContainerElement, name, link) {
-
-  const newCard = new Card({
-    link: link,
-    name: name
-  }, '#cards__template', () => handleCardClick(link, name));
-  const newCardElement = newCard.generateCard();
-  cardContainerElement.addItem(newCardElement);
-}
+// function prependNewCardToCardsContainer(data) {
+//   const newCard = {
+//     name: data.dataName,
+//     link: data.dataLink
+//   }
+// const newCard = new Card({
+//   link: link,
+//   name: name
+// }, '#cards__template', () => handleCardClick(link, name));
+// const newCardElement = newCard.generateCard();
+// cardContainerElement.addItem(newCardElement);
+// }
 
 // Profile popup
 
@@ -140,6 +146,7 @@ profilePopupOpenButton.addEventListener('click', () => {
   const userInfoInput = userInfo.getUserInfo();
   profileNameInput.value = userInfoInput.userName;
   profileJobInput.value = userInfoInput.userJob;
+
   profilePopup.open();
 });
 
