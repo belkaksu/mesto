@@ -20,44 +20,11 @@ const api = new Api({
 });
 
 
-// Отрисовка массива карточек
 
-const cardsContainer = new Section({
-  renderer: (item) => {
-    cardsContainer.addItem(createCard(item));
-  }
-}, cardsList);
 
 
 
 const userInfo = new UserInfo(profileNameElement, profileJobElement, profileAvatarElement)
-
-api.getInitialCards()
-  .then((cardData) => {
-    cardsContainer.renderItems(cardData)
-  }).catch((err) => {
-    console.log("Ошибка в получении массива карточек")
-  })
-
-
-
-api.getUserInfo()
-  .then((data) => {
-    const user = {
-      userName: data.name,
-      userJob: data.about,
-      userAvatar: data.avatar
-    }
-    userInfo.setUserInfo(user.userName, user.userJob)
-    userInfo.setUserAvatar(user.userAvatar)
-  }).catch((err) => {
-    console.log("Ошибка загрузки данных пользователя")
-  })
-
-
-
-
-
 
 
 
@@ -81,7 +48,13 @@ function handleCardClick(evt) {
   imagePopup.open(data);
 }
 
+// Отрисовка массива карточек
 
+const cardsContainer = new Section({
+  renderer: (item) => {
+    cardsContainer.addItem(createCard(item));
+  }
+}, cardsList);
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
 
@@ -132,7 +105,6 @@ popupNewCardOpenButton.addEventListener('click', () => {
 // Profile popup
 
 
-
 const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
   userInfo.setUserInfo(formData);
   profilePopup.close();
@@ -150,16 +122,23 @@ profilePopupOpenButton.addEventListener('click', () => {
   profilePopup.open();
 });
 
-const popupAvatar = new PopupWithForm(profileAvatarSelector, (formData) => {
+const popupAvatar = new PopupWithForm(profileAvatarSelector, (updateAvatar) => {
 
-  popupAvatar.close();
+  api.updateUserAvatar(updateAvatar)
+    .then((res) => {
+      userInfo.setUserAvatar(res.avatar);
+      popupAvatar.close();
+    }).catch((err) => {
+      console.log("Ошибка обновления аватара")
+    })
 })
 
 
 
 profileAvatarButton.addEventListener('click', () => {
+  formValidatorAvatarForm.cleanFormErrorFields();
   popupAvatar.open();
-  
+
 
 })
 
@@ -179,7 +158,27 @@ formValidatorAvatarForm.enableValidation();
 
 
 
+api.getInitialCards()
+  .then((cardData) => {
+    cardsContainer.renderItems(cardData)
+  }).catch((err) => {
+    console.log("Ошибка в получении массива карточек")
+  })
 
+
+
+api.getUserInfo()
+  .then((data) => {
+    const user = {
+      userName: data.name,
+      userJob: data.about,
+      userAvatar: data.avatar
+    }
+    userInfo.setUserInfo(user.userName, user.userJob)
+    userInfo.setUserAvatar(user.userAvatar)
+  }).catch((err) => {
+    console.log("Ошибка загрузки данных пользователя")
+  })
 
 
 

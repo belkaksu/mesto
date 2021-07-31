@@ -10,7 +10,7 @@ export default class UserInfo {
     userJob: this._userJobElement.textContent,
     userAvatar: this._userAvatarElement.src
     }
-
+    
 
   }
   setUserInfo(userName, userJob) {
