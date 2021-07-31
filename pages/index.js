@@ -34,7 +34,7 @@ function createCard(dataCard) {
   const card = new Card({
     data: dataCard,
     cardSelector: '#cards__template',
-    handleCardClick: () => handleCardClick(evt)
+    handleCardClick: (evt) => handleCardClick(evt)
   });
   return card.generateCard();
 }
@@ -45,7 +45,7 @@ function handleCardClick(evt) {
   const data = {};
   data.name = evt.target.alt;
   data.link = evt.target.src;
-  imagePopup.open(data);
+  imagePopup.open(data.link);
 }
 
 // Отрисовка массива карточек
