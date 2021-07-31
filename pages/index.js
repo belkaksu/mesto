@@ -97,8 +97,8 @@ const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
     link: formData.dataLink
   }
     api.addCard(newCard)
-    .then((res) => {
-      cardsContainer.addItem(createCard(res));
+    .then((cardData) => {
+      cardsContainer.addItem(createCard(cardData));
       addCardPopup.close();
     }).catch((err) => {
       console.log("Ошибка загрузки карточки")

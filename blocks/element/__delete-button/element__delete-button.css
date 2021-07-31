@@ -1,4 +1,5 @@
 .element__delete-button {
+  display: none;
   width: 18px;
   height: 19.3px;
   background-image: url('../../../images/profile__delete-button.svg');
@@ -16,4 +17,4 @@
     cursor: pointer;
   }
 
-  
+
