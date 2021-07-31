@@ -9,7 +9,7 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
 import './index.css';
 
-import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement, profileAvatarElement } from '../scripts/utils/constants.js';
+import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement, profileAvatarElement, profileAvatarButton, profileAvatarSelector, profileAvatarForm } from '../scripts/utils/constants.js';
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26',
@@ -96,7 +96,7 @@ const addCardPopup = new PopupWithForm(popupNewCardSelector, (formData) => {
     name: formData.dataName,
     link: formData.dataLink
   }
-    api.addCard(newCard)
+  api.addCard(newCard)
     .then((cardData) => {
       cardsContainer.addItem(createCard(cardData));
       addCardPopup.close();
@@ -150,14 +150,32 @@ profilePopupOpenButton.addEventListener('click', () => {
   profilePopup.open();
 });
 
+const popupAvatar = new PopupWithForm(profileAvatarSelector, (formData) => {
+
+  popupAvatar.close();
+})
+
+
+
+profileAvatarButton.addEventListener('click', () => {
+  popupAvatar.open();
+  
+
+})
+
+popupAvatar.setEventListeners();
+
+
+
 // Валидация форм
 
 const formValidatorProfileForm = new FormValidator(formParameters, profileFormElement);
 const formValidatorNewCardForm = new FormValidator(formParameters, newCardFormElement);
+const formValidatorAvatarForm = new FormValidator(formParameters, profileAvatarForm);
 
 formValidatorNewCardForm.enableValidation();
 formValidatorProfileForm.enableValidation();
-
+formValidatorAvatarForm.enableValidation();
 
 
 

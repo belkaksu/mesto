@@ -12,7 +12,13 @@ export const profileJobInput = document.querySelector('.popup__item_user_job');
 
 export const profileNameElement = document.querySelector('.profile__title');
 export const profileJobElement = document.querySelector('.profile__subtitle');
-export const profileAvatarElement = document.querySelector('.profile__avatar-button')
+
+export const profileAvatarSelector = document.querySelector('.popup-new-avatar');
+export const profileAvatarElement = document.querySelector('.profile__avatar');
+export const profileAvatarButton = document.querySelector('.profile__avatar-button');
+export const profileAvatarForm = document.querySelector('.popup-new-avatar__container');
+
+
 
 // Переменные newCardPopup
 
