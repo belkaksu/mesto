@@ -23,22 +23,58 @@ const api = new Api({
 
 
 
+const popupCardDelete = new PopupWithSubmit(popupCardDeleteSelector)
 
+popupCardDelete.setEventListeners();
 
 const userInfo = new UserInfo(profileNameElement, profileJobElement, profileAvatarElement)
-
+let userId = null;
 
 
 // Создание карточки
 
 function createCard(dataCard) {
+
   const card = new Card({
     data: dataCard,
+    userId: userId,
     cardSelector: '#cards__template',
-    handleCardClick: (evt) => handleCardClick(evt)
+    handleCardClick: (evt) => {
+      handleCardClick(evt)
+    },
+    handleDeleteClick: () => {
+      popupCardDelete.open();
+      popupCardDelete.setFormSubmit(() => {
+        api.deleteCard(dataCard._id)
+          .then(() => {
+            card.handleDeleteCard();
+            popupCardDelete.close();
+          }).catch((err) => {
+            console.log('Ошибка удаления карточки')
+          })
+      })
+    },
+    likeClick: (likesCounter) => {
+      api.putLike(dataCard._id)
+        .then((res) => {
+          likesCounter.textContent = res.likes.length;
+        }).catch((err) => {
+          console.log('Ошибка функции счетчика лайка (put)')
+        })
+    },
+    dislikeClick: (likesCounter) => {
+      api.deleteLike(dataCard._id)
+        .then((res) => {
+          likesCounter.textContent = res.likes.length;
+        }).catch((err) => {
+          console.log('Ошибка функции счетчика лайка (delete)')
+        })
+    },
   });
+
   return card.generateCard();
 }
+
 
 // Функция заполнения попапа данными и его открытия
 
@@ -141,7 +177,7 @@ profileAvatarButton.addEventListener('click', () => {
 
 popupAvatar.setEventListeners();
 
-const popupCardDelete = new PopupWithSubmit(popupCardDeleteSelector)
+
 
 
 
@@ -158,31 +194,18 @@ formValidatorAvatarForm.enableValidation();
 
 
 
-api.getInitialCards()
-  .then((cardData) => {
-    cardsContainer.renderItems(cardData)
-  }).catch((err) => {
-    console.log("Ошибка в получении массива карточек")
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardData]) => {
+
+    userInfo.setUserInfo(userData.name, userData.about)
+    userInfo.setUserAvatar(userData.avatar)
+    userId = userData._id;
+    cardsContainer.renderItems(cardData);
   })
-
-
-
-api.getUserInfo()
-  .then((data) => {
-    const user = {
-      userName: data.name,
-      userJob: data.about,
-      userAvatar: data.avatar
-    }
-    userInfo.setUserInfo(user.userName, user.userJob)
-    userInfo.setUserAvatar(user.userAvatar)
-  }).catch((err) => {
-    console.log("Ошибка загрузки данных пользователя")
-  })
-
-
-
-
+  .catch((err) => {
+    console.log(err);
+  });
 
 
 
