@@ -18,7 +18,9 @@ export const profileAvatarElement = document.querySelector('.profile__avatar');
 export const profileAvatarButton = document.querySelector('.profile__avatar-button');
 export const profileAvatarForm = document.querySelector('.popup-new-avatar__container');
 
-
+export const popupCardDeleteSelector = document.querySelector('.popup-card-delete');
+export const popupCardDeleteForm = popupCardDeleteSelector.querySelector('popup__container');
+export const popupCardDeleteButton = popupCardDeleteSelector.querySelector('.popup__submit-button');
 
 // Переменные newCardPopup
 

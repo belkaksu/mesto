@@ -5,11 +5,12 @@ import Section from '../scripts/components/Section.js';
 
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithSubmit from '../scripts/components/PopupWithSubmit.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
 import './index.css';
 
-import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement, profileAvatarElement, profileAvatarButton, profileAvatarSelector, profileAvatarForm } from '../scripts/utils/constants.js';
+import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement, profileAvatarElement, profileAvatarButton, profileAvatarSelector, profileAvatarForm, popupCardDeleteSelector, popupCardDeleteForm } from '../scripts/utils/constants.js';
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26',
@@ -87,20 +88,6 @@ popupNewCardOpenButton.addEventListener('click', () => {
   formValidatorNewCardForm.enableValidation();
 });
 
-// Отрисовка новой карточки
-
-// function prependNewCardToCardsContainer(data) {
-//   const newCard = {
-//     name: data.dataName,
-//     link: data.dataLink
-//   }
-// const newCard = new Card({
-//   link: link,
-//   name: name
-// }, '#cards__template', () => handleCardClick(link, name));
-// const newCardElement = newCard.generateCard();
-// cardContainerElement.addItem(newCardElement);
-// }
 
 // Profile popup
 
@@ -119,38 +106,6 @@ const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
     })
 
 })
-
-
-// const userInfoPopup = new PopupWithForm({
-//   popupSelector: popupConfig.editFormModalWindow,
-//   handleFormSubmit: (data) => {
-//     userInfoPopup.renderLoading(true);
-//     api.setUserInfo({
-//       name: data.userName,
-//       about: data.userDescription
-//     })
-//       .then((info) => {
-//         userInfo.setUserInfo({
-//           userName: info.name,
-//           userDescription: info.about,
-//         })
-//         userInfoPopup.close();
-//       })
-//       .catch(err => console.log(`Ошибка при обновлении информации о пользователе: ${err}`))
-//       .finally(() => userInfoPopup.renderLoading(false));
-//   }
-// });
-
-
-
-
-
-
-
-
-
-
-
 
 profilePopup.setEventListeners();
 
@@ -185,6 +140,9 @@ profileAvatarButton.addEventListener('click', () => {
 })
 
 popupAvatar.setEventListeners();
+
+const popupCardDelete = new PopupWithSubmit(popupCardDeleteSelector)
+
 
 
 
