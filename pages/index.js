@@ -106,9 +106,51 @@ popupNewCardOpenButton.addEventListener('click', () => {
 
 
 const profilePopup = new PopupWithForm(profilePopupSelector, (formData) => {
-  userInfo.setUserInfo(formData);
-  profilePopup.close();
+  const profileInfo = {
+    name: formData.userName,
+    about: formData.userJob
+  }
+  api.updateUserInfo(profileInfo)
+    .then((res) => {
+      userInfo.setUserInfo(res.name, res.about)
+      profilePopup.close();
+    }).catch((err) => {
+      console.log('Ошибка обновлениыя данных профиля')
+    })
+
 })
+
+
+// const userInfoPopup = new PopupWithForm({
+//   popupSelector: popupConfig.editFormModalWindow,
+//   handleFormSubmit: (data) => {
+//     userInfoPopup.renderLoading(true);
+//     api.setUserInfo({
+//       name: data.userName,
+//       about: data.userDescription
+//     })
+//       .then((info) => {
+//         userInfo.setUserInfo({
+//           userName: info.name,
+//           userDescription: info.about,
+//         })
+//         userInfoPopup.close();
+//       })
+//       .catch(err => console.log(`Ошибка при обновлении информации о пользователе: ${err}`))
+//       .finally(() => userInfoPopup.renderLoading(false));
+//   }
+// });
+
+
+
+
+
+
+
+
+
+
+
 
 profilePopup.setEventListeners();
 
