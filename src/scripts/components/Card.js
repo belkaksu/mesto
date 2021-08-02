@@ -33,9 +33,11 @@ export class Card {
     this._likesCounter = this._element.querySelector('.element__counter')
     this._deleteButton = this._element.querySelector('.element__delete-button');
 
+
+    this._titleElement = this._element.querySelector('.element__title');
+    this._titleElement.textContent = this._name;
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
-    this._element.querySelector('.element__title').textContent = this._name;
     this._likesCounter.textContent = this._likesSum;
 
     this._toggleButtonIconImage();
@@ -52,8 +54,8 @@ export class Card {
     this._deleteButton.addEventListener('click', () => {
       this._handleDeleteClick();
     });
-    this._imageElement.addEventListener('click', (event) => {
-      this._handleCardClick(event);
+    this._imageElement.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
     });
   }
 

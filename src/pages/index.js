@@ -112,7 +112,7 @@ popupAvatar.setEventListeners();
 
 popupNewCardOpenButton.addEventListener('click', () => {
   addCardPopup.open();
-  formValidatorNewCardForm.enableValidation();
+  formValidatorNewCardForm.cleanFormErrorFields();
 });
 
 profilePopupOpenButton.addEventListener('click', () => {
@@ -149,8 +149,8 @@ function createCard(dataCard) {
     data: dataCard,
     userId: userId,
     cardSelector: '#cards__template',
-    handleCardClick: (evt) => {
-      handleCardClick(evt)
+    handleCardClick: (name, link) => {
+      imagePopup.open(link, name);
     },
     handleDeleteClick: () => {
       popupCardDelete.open();
@@ -184,14 +184,12 @@ function createCard(dataCard) {
   return card.generateCard();
 }
 
-// Функция заполнения попапа данными и его открытия
+// // Функция заполнения попапа данными и его открытия
 
-function handleCardClick(evt) {
-  const data = {};
-  data.name = evt.target.alt;
-  data.link = evt.target.src;
-  imagePopup.open(data.link);
-}
+// function handleCardClick() {
+
+//     imagePopup.open(data.link, data.name);
+// // }
 
 
 

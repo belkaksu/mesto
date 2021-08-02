@@ -1,4 +1,5 @@
 .element__title {
+  display: block;
   margin: 0;
   max-width: 220px;
   color: black;
