@@ -7,7 +7,7 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithSubmit from '../scripts/components/PopupWithSubmit.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
-import './index.css';
+import '../../src/pages/index.css';
 
 import { cardsList, imagePopupSelector, profilePopupOpenButton, profilePopupSelector, profileFormElement, profileNameInput, profileJobInput, profileNameElement, profileJobElement, popupNewCardOpenButton, popupNewCardSelector, newCardFormElement, profileAvatarElement, profileAvatarButton, profileAvatarSelector, profileAvatarForm, popupCardDeleteSelector } from '../scripts/utils/constants.js';
 
@@ -168,7 +168,7 @@ function createCard(dataCard) {
       api.putLike(dataCard._id)
         .then((res) => {
           likesCounter.textContent = res.likes.length;
-        }).catch((err) => {
+         }).catch((err) => {
           console.log('Ошибка функции счетчика лайка (put)')
         })
     },

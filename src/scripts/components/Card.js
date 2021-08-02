@@ -73,7 +73,7 @@ export class Card {
   // Прячем корзину если карточка чужая
 
   _toggleButtonIconImage() {
-        if (this._userId === this._cardOwnerId) {
+    if (this._userId === this._cardOwnerId) {
 
       this._deleteButton.classList.add('element__delete-button_display-active')
     } else
@@ -83,13 +83,16 @@ export class Card {
   //  Добавляем лайк
 
   _hasUserLike() {
-    this._activeLike = Boolean(this._likesArray.find((item) => {
-      this._userId === item._id
+    this._activeLike = (this._likesArray.find((like) => {
+      return this._userId === like._id;
     }))
     if (this._activeLike) {
       this._likeIcon.classList.add('element__icon_active')
     }
   }
+
+
+
 
   _handleLikeClick() {
     if (this._likeIcon.classList.contains('element__icon_active')) {
