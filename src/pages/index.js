@@ -135,7 +135,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userInfo.setUserInfo(userData.name, userData.about)
     userInfo.setUserAvatar(userData.avatar)
     userId = userData._id;
-    cardsContainer.renderItems(cardData);
+    cardsContainer.renderItems(cardData.reverse());
   })
   .catch((err) => {
     console.log(err);
@@ -184,12 +184,6 @@ function createCard(dataCard) {
   return card.generateCard();
 }
 
-// // Функция заполнения попапа данными и его открытия
-
-// function handleCardClick() {
-
-//     imagePopup.open(data.link, data.name);
-// // }
 
 
 
