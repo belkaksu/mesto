@@ -3,7 +3,7 @@ import Popup from "./Popup";
 export default class PopupWithSubmit extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._form = popupSelector.querySelector('.popup__container');
+    this._form = this._popupSelector.querySelector('.popup__container');
     this._handleSubmitCallback = null;
   }
 
